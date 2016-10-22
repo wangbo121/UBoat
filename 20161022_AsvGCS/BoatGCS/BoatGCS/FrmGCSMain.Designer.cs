@@ -154,6 +154,8 @@
             this.teBox_jsk_rudlmt = new System.Windows.Forms.TextBox();
             this.ckBoxSimu = new System.Windows.Forms.CheckBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
             this.textBoxCTE_P = new System.Windows.Forms.TextBox();
             this.label48 = new System.Windows.Forms.Label();
             this.trackBar_CTE_P = new System.Windows.Forms.TrackBar();
@@ -166,6 +168,8 @@
             this.teBoxTurnMotor = new System.Windows.Forms.TextBox();
             this.btnReturn = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.label59 = new System.Windows.Forms.Label();
             this.btnMotStop = new System.Windows.Forms.Button();
             this.btnBwd = new System.Windows.Forms.Button();
             this.btnFwd = new System.Windows.Forms.Button();
@@ -304,10 +308,12 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
-            this.label57 = new System.Windows.Forms.Label();
-            this.label58 = new System.Windows.Forms.Label();
-            this.label59 = new System.Windows.Forms.Label();
-            this.label60 = new System.Windows.Forms.Label();
+            this.button_generator_on = new System.Windows.Forms.Button();
+            this.button_generator_off = new System.Windows.Forms.Button();
+            this.textBox_toggle_voltage0 = new System.Windows.Forms.TextBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.textBox_toggle_voltage1 = new System.Windows.Forms.TextBox();
+            this.label63 = new System.Windows.Forms.Label();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -589,6 +595,10 @@
             // groupBox11
             // 
             this.groupBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.groupBox11.Controls.Add(this.textBox_toggle_voltage1);
+            this.groupBox11.Controls.Add(this.label63);
+            this.groupBox11.Controls.Add(this.textBox_toggle_voltage0);
+            this.groupBox11.Controls.Add(this.label62);
             this.groupBox11.Controls.Add(this.teBox_ap_dir_nav);
             this.groupBox11.Controls.Add(this.label41);
             this.groupBox11.Controls.Add(this.teBox_ap_dir_target);
@@ -1672,6 +1682,26 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "自驾参数";
             // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.BackColor = System.Drawing.Color.Transparent;
+            this.label58.ForeColor = System.Drawing.Color.Red;
+            this.label58.Location = new System.Drawing.Point(138, 14);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(126, 14);
+            this.label58.TabIndex = 46;
+            this.label58.Text = "实际系数都乘以0.1";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(291, 31);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(70, 14);
+            this.label57.TabIndex = 45;
+            this.label57.Text = "自驾返回P";
+            // 
             // textBoxCTE_P
             // 
             this.textBoxCTE_P.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -1808,6 +1838,24 @@
             this.groupBox9.TabIndex = 14;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "手动遥控";
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(225, 60);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(91, 14);
+            this.label60.TabIndex = 45;
+            this.label60.Text = "自驾返回方向";
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(225, 32);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(91, 14);
+            this.label59.TabIndex = 44;
+            this.label59.Text = "自驾返回油门";
             // 
             // btnMotStop
             // 
@@ -1960,6 +2008,8 @@
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox5.Controls.Add(this.button_generator_off);
+            this.groupBox5.Controls.Add(this.button_generator_on);
             this.groupBox5.Controls.Add(this.textBox2);
             this.groupBox5.Controls.Add(this.textBox1);
             this.groupBox5.Controls.Add(this.button2);
@@ -3250,43 +3300,67 @@
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
             // 
-            // label57
+            // button_generator_on
             // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(291, 31);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(70, 14);
-            this.label57.TabIndex = 45;
-            this.label57.Text = "自驾返回P";
+            this.button_generator_on.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_generator_on.Location = new System.Drawing.Point(15, 415);
+            this.button_generator_on.Name = "button_generator_on";
+            this.button_generator_on.Size = new System.Drawing.Size(100, 23);
+            this.button_generator_on.TabIndex = 86;
+            this.button_generator_on.Text = "开启发电机";
+            this.button_generator_on.UseVisualStyleBackColor = true;
+            this.button_generator_on.Click += new System.EventHandler(this.button_generator_on_Click);
             // 
-            // label58
+            // button_generator_off
             // 
-            this.label58.AutoSize = true;
-            this.label58.BackColor = System.Drawing.Color.Transparent;
-            this.label58.ForeColor = System.Drawing.Color.Red;
-            this.label58.Location = new System.Drawing.Point(138, 14);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(126, 14);
-            this.label58.TabIndex = 46;
-            this.label58.Text = "实际系数都乘以0.1";
+            this.button_generator_off.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_generator_off.Location = new System.Drawing.Point(136, 415);
+            this.button_generator_off.Name = "button_generator_off";
+            this.button_generator_off.Size = new System.Drawing.Size(100, 23);
+            this.button_generator_off.TabIndex = 87;
+            this.button_generator_off.Text = "关闭发电机";
+            this.button_generator_off.UseVisualStyleBackColor = true;
+            this.button_generator_off.Click += new System.EventHandler(this.button_generator_off_Click);
             // 
-            // label59
+            // textBox_toggle_voltage0
             // 
-            this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(225, 32);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(91, 14);
-            this.label59.TabIndex = 44;
-            this.label59.Text = "自驾返回油门";
+            this.textBox_toggle_voltage0.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_toggle_voltage0.Location = new System.Drawing.Point(134, 263);
+            this.textBox_toggle_voltage0.Name = "textBox_toggle_voltage0";
+            this.textBox_toggle_voltage0.Size = new System.Drawing.Size(59, 23);
+            this.textBox_toggle_voltage0.TabIndex = 56;
+            this.textBox_toggle_voltage0.Text = "0";
             // 
-            // label60
+            // label62
             // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(225, 60);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(91, 14);
-            this.label60.TabIndex = 45;
-            this.label60.Text = "自驾返回方向";
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label62.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label62.Location = new System.Drawing.Point(11, 266);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(120, 14);
+            this.label62.TabIndex = 57;
+            this.label62.Text = "切换器电池1电压";
+            // 
+            // textBox_toggle_voltage1
+            // 
+            this.textBox_toggle_voltage1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_toggle_voltage1.Location = new System.Drawing.Point(325, 263);
+            this.textBox_toggle_voltage1.Name = "textBox_toggle_voltage1";
+            this.textBox_toggle_voltage1.Size = new System.Drawing.Size(59, 23);
+            this.textBox_toggle_voltage1.TabIndex = 58;
+            this.textBox_toggle_voltage1.Text = "0";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label63.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label63.Location = new System.Drawing.Point(199, 266);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(120, 14);
+            this.label63.TabIndex = 59;
+            this.label63.Text = "切换器电池2电压";
             // 
             // FrmGCSMain
             // 
@@ -3637,6 +3711,12 @@
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.Button button_generator_on;
+        private System.Windows.Forms.Button button_generator_off;
+        private System.Windows.Forms.TextBox textBox_toggle_voltage1;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.TextBox textBox_toggle_voltage0;
+        private System.Windows.Forms.Label label62;
     }
 }
 

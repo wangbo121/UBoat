@@ -70,7 +70,9 @@ namespace BoatGCS
         public const byte DISCHARGE2 = 6;
         public const byte DISCHARGE_STOP = 7;
 
-       
+        public const byte PARAMETER_SET_GENERATOR = 12;//打开关闭发电机
+        public const byte GENERATOR_ON = 1;
+        public const byte GENERATOR_OFF = 0;
 
         
 
@@ -1939,6 +1941,11 @@ namespace BoatGCS
                 teBox_inboat_t2.Text = Convert.ToString(ap2gcs_real.boat_temp2);
                 teBox_inboat_humi.Text = Convert.ToString(ap2gcs_real.boat_humi);
 
+                textBox_toggle_voltage0.Text = Convert.ToString(ap2gcs_real.spare3);
+                textBox_toggle_voltage1.Text = Convert.ToString(ap2gcs_real.spare4);
+
+
+
                 //右侧仪表和地图上文本数据显示
                 panelInstruments1.SetValue((float)(ap2gcs_real.spd * 0.01), 0, (float)(ap2gcs_real.pitch * 0.01),
                     (float)(ap2gcs_real.roll * 0.01));
@@ -2691,6 +2698,40 @@ namespace BoatGCS
             gbl_var.send_req_cnt++;
 
             checkBox_discharge2.Checked = !checkBox_discharge2.Checked;
+        }
+
+        private void button_generator_onoff_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_generator_on_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_GENERATOR;
+            //gcs2ap_parameter.value = Convert.ToByte(0);
+            gcs2ap_parameter.value = GENERATOR_ON;
+
+            gbl_var.send_req_cnt++;
+
+            //checkBox_discharge2.Checked = !checkBox_discharge2.Checked;
+        }
+
+        private void button_generator_off_Click(object sender, EventArgs e)
+        {
+        
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_GENERATOR;
+            //gcs2ap_parameter.value = Convert.ToByte(0);
+            gcs2ap_parameter.value = GENERATOR_OFF;
+
+            gbl_var.send_req_cnt++;
+
+            //checkBox_discharge2.Checked = !checkBox_discharge2.Checked;
         }
 
     }
