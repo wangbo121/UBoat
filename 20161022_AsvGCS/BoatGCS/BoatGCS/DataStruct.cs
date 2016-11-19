@@ -241,6 +241,19 @@ namespace BoatGCS
         public byte spare2;
         public byte spare3;
         public byte spare4;
+
+        public byte spare5;
+        public byte spare6;
+        public byte spare7;
+        public byte spare8;
+
+        public UInt32 spare9;
+        public UInt32 spare10;
+        public UInt32 spare11;
+        public UInt32 spare12;
+        public UInt32 spare13;
+        public UInt32 spare14;
+        public UInt32 spare15;
     }
     /// <summary>
     /// AP发送给GCS的接收确认包，8字节。单向

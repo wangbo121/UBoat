@@ -107,12 +107,12 @@ namespace BoatGCS
 
         public const double TIMER_DISP=2000;//[ms] 
 
-        public const double BEIJING_LAT=39.958436; 
-        public const double BEIJING_LNG=116.309175;
+        public const double BEIJING_LAT = 32.6843585;
+        public const double BEIJING_LNG = 117.0552518;
         //public const double HUAINAN_LAT = 32.56765;
         //public const double HUAINAN_LNG = 117.00853;
-        public const double HUAINAN_LAT = 39.958436;
-        public const double HUAINAN_LNG = 116.309175;
+        public const double HUAINAN_LAT = 32.6843585;
+        public const double HUAINAN_LNG = 117.0552518;
 
         //public double onestep = 0.1;
 
@@ -271,6 +271,8 @@ namespace BoatGCS
         /// 定时器定时计数
         /// </summary>
         public static int timerCnt;
+
+       
 
         public FrmGCSMain()
         {
@@ -460,6 +462,10 @@ namespace BoatGCS
         //wangbo
         public static int firstWp;
 
+        byte[] com_recv_buf = new byte[500];//接收缓冲区
+
+        public static int com_recv_cnt=0;
+
         private void comAReceived(object sender, SerialDataReceivedEventArgs e)//接收数据 中断只标志有数据需要读取，读取操作在中断外进行
         {
             int recvLen;
@@ -481,239 +487,329 @@ namespace BoatGCS
                 try
                 {
                     comAListening = true;//设置标记，说明我已经开始处理数据，一会儿要使用系统UI的。
+                    /*
                     recvBuffer = new byte[comPortA.BytesToRead];//接收数据缓存大小
                     recvLen = comPortA.Read(recvBuffer, 0, recvBuffer.Length);//读取数据
                     comArecvCount += recvLen;
-
-                    //此处加数据处理
-                    for(i=0;i<recvLen;i++)
+                    */
+                    
+                    recvBuffer = new byte[comPortA.BytesToRead];//接收数据缓存大小
+                    recvLen = comPortA.Read(recvBuffer, 0, recvBuffer.Length);//读取数据
+                    comArecvCount += recvLen;
+                    Array.Copy(recvBuffer, 0, com_recv_buf, com_recv_cnt, recvLen);
+                    /*
+                    for (i = 0; i < recvLen; i++)
                     {
-                        c = recvBuffer[i];
-                        switch (comA_recvpacket.state)
+                        com_recv_buf[com_recv_cnt+i] = recvBuffer[i];
+                    }
+                     * */
+                    com_recv_cnt += recvLen;
+
+                    if (com_recv_cnt >= 79)
+                    {
+
+                        //此处加数据处理
+                        //for (i = 0; i < recvLen; i++)
+                        for (i = 0; i < com_recv_cnt; i++)
                         {
-                            case RECV_HEAD1:
-                                if (c == 0xaa)
-                                {
-                                    comA_recvpacket.state = RECV_HEAD2;
-                                    comA_recvpacket.checksum = c;
-                                }
-                                else 
-                                {
-                                    error1++;
-                                }
-                                packbuflen = 0;                                
-                                break;
-                            case RECV_HEAD2:
-                                if (c == 0x55)
-                                {
-                                    comA_recvpacket.state = RECV_LEN;
+                            //c = recvBuffer[i];
+                            c = com_recv_buf[i];
+                            switch (comA_recvpacket.state)
+                            {
+                                case RECV_HEAD1:
+                                    if (c == 0xaa)
+                                    {
+                                        comA_recvpacket.state = RECV_HEAD2;
+                                        comA_recvpacket.checksum = c;
+                                    }
+                                    else
+                                    {
+                                        error1++;
+                                    }
+                                    packbuflen = 0;
+                                    break;
+                                case RECV_HEAD2:
+                                    if (c == 0x55)
+                                    {
+                                        comA_recvpacket.state = RECV_LEN;
+                                        comA_recvpacket.checksum += c;
+                                    }
+                                    else
+                                    {
+                                        comA_recvpacket.state = RECV_HEAD1;
+                                        error2++;
+                                    }
+                                    packbuflen = 0;
+                                    break;
+                                case RECV_LEN:
+                                    comA_recvpacket.len = c;
+                                    comA_recvpacket.state = RECV_CNT;
                                     comA_recvpacket.checksum += c;
-                                }
-                                else
-                                {
-                                    comA_recvpacket.state = RECV_HEAD1;
-                                    error2++;
-                                }
-                                packbuflen = 0;
-                                break;
-                            case RECV_LEN:
-                                comA_recvpacket.len = c;
-                                comA_recvpacket.state = RECV_CNT;
-                                comA_recvpacket.checksum += c;
-                                packbuflen = 0;
-                                break;
-                            case RECV_CNT:
-                                comA_recvpacket.cnt = c;
-                                comA_recvpacket.state = RECV_SYSID;
-                                comA_recvpacket.checksum += c;
-                                packbuflen = 0;
-                                break;
-                            case RECV_SYSID:
-                                comA_recvpacket.sysid = c;
-                                comA_recvpacket.state = RECV_TYPE;
-                                comA_recvpacket.checksum += c;
-                                packbuflen = 0;
-                                break;
-                            case RECV_TYPE:
-                                comA_recvpacket.type = c;
-                                comA_recvpacket.state = RECV_DATA;
-                                comA_recvpacket.checksum += c;
-                                packbuflen = 0;
-                                break;
-                            case RECV_DATA:
-                                packbuf[packbuflen] = c;                                
-                                comA_recvpacket.checksum += c;
-                                packbuflen++;
-                                
-                                if (packbuflen >= comA_recvpacket.len)
-                                {
-                                    comA_recvpacket.state = RECV_CHECKSUM;
-                                }
-                                break;
-                            case RECV_CHECKSUM:
-                                if (comA_recvpacket.checksum == c)
-                                {
-                                    if (comA_recvpacket.type == ID_AP2GCS_REAL)//AP-->GCS的实时数据
+                                    packbuflen = 0;
+                                    break;
+                                case RECV_CNT:
+                                    comA_recvpacket.cnt = c;
+                                    comA_recvpacket.state = RECV_SYSID;
+                                    comA_recvpacket.checksum += c;
+                                    packbuflen = 0;
+                                    break;
+                                case RECV_SYSID:
+                                    comA_recvpacket.sysid = c;
+                                    comA_recvpacket.state = RECV_TYPE;
+                                    comA_recvpacket.checksum += c;
+                                    packbuflen = 0;
+                                    break;
+                                case RECV_TYPE:
+                                    comA_recvpacket.type = c;
+                                    comA_recvpacket.state = RECV_DATA;
+                                    comA_recvpacket.checksum += c;
+                                    packbuflen = 0;
+                                    break;
+                                case RECV_DATA:
+                                    packbuf[packbuflen] = c;
+                                    comA_recvpacket.checksum += c;
+                                    packbuflen++;
+
+                                    if (packbuflen >= comA_recvpacket.len)
                                     {
-                                        //ap2gcs_real.lng = BitConverter.ToUInt32(packbuf,0);//[度*0.00001]
-                                        //ap2gcs_real.lat = BitConverter.ToUInt32(packbuf,4);//[度*0.00001]
-                                        //ap2gcs_real.spd = BitConverter.ToInt16(packbuf,8);//[Knot*0.01]，实时航速
-                                        //ap2gcs_real.dir = BitConverter.ToInt16(packbuf,10);//[度*0.01]，航向
-                                        //ap2gcs_real.pitch = BitConverter.ToInt16(packbuf,12);//[度*0.01]，俯仰
-                                        //ap2gcs_real.roll = BitConverter.ToInt16(packbuf,14);//[度*0.01]，滚转
-                                        //ap2gcs_real.yaw = BitConverter.ToInt16(packbuf,16);//[度*0.01]，偏航
-                                        //ap2gcs_real.moo_pwm = packbuf[18];//主电机启停舵机PWM 0-255
-                                        //ap2gcs_real.mbf_pwm = packbuf[19];//主电机前进后退舵机PWM 0-255
-                                        //ap2gcs_real.rud_pwm = packbuf[20];//方向舵舵机PWM 0-255
-                                        //ap2gcs_real.mm_state = packbuf[21];//主推进电机状态
-                                        //ap2gcs_real.rud_p = packbuf[22];//方向舵机控制P增益
-                                        //ap2gcs_real.rud_i = packbuf[23];//方向舵机控制I增益
-                                        //ap2gcs_real.spare1 = packbuf[24];//预留
-                                        //ap2gcs_real.boat_temp1 = packbuf[25];//[度]，艇内1号点温度
-                                        //ap2gcs_real.boat_temp2 = packbuf[26];//[度]，艇内2号点温度
-                                        //ap2gcs_real.boat_humi = packbuf[27];//[%]，艇内湿度
-                                        //ap2gcs_real.wpno = packbuf[28];//下一航点编号，0xff表示是GCS发送的新航点
-                                        //ap2gcs_real.spare2 = packbuf[29];
-
-
-
-
-
-                                        //wangbo
-                                        //ap2gcs_real.lng = BitConverter.ToUInt32(packbuf, 0);//[度*0.00001]
-                                        //ap2gcs_real.lat = BitConverter.ToUInt32(packbuf, 4);//[度*0.00001]
-                                        recv_tmp1 = BitConverter.ToUInt32(packbuf, 0);//[度*0.00001]
-                                        recv_tmp2 = BitConverter.ToUInt32(packbuf, 4);//[度*0.00001]
-                                        if ((recv_tmp1 < 1000000) || (recv_tmp2 < 1000000))//取消通信错误数据
-                                        {
-                                        }
-                                        else
-                                        {
-                                            ap2gcs_real.lng = recv_tmp1;
-                                            ap2gcs_real.lat = recv_tmp2;
-                                            ap2gcs_real.spd = BitConverter.ToUInt32(packbuf, 8);//[Knot*0.01]，实时航速
-                                            ap2gcs_real.dir_gps = BitConverter.ToInt16(packbuf, 12);//[度*0.01]，GPS航向
-                                            ap2gcs_real.dir_heading = BitConverter.ToInt16(packbuf, 14);//[度*0.01]，机头朝向
-                                            ap2gcs_real.dir_target = BitConverter.ToInt16(packbuf, 16);//[度*0.01]，目标点方向
-                                            ap2gcs_real.dir_nav = BitConverter.ToInt16(packbuf, 18);//[度*0.01]，导航航向
-                                            ap2gcs_real.pitch = BitConverter.ToInt16(packbuf, 20);//[度*0.01]，俯仰
-                                            ap2gcs_real.roll = BitConverter.ToInt16(packbuf, 22);//[度*0.01]，滚转
-                                            ap2gcs_real.yaw = BitConverter.ToInt16(packbuf, 24);//[度*0.01]，偏航
-                                            ap2gcs_real.moo_pwm = packbuf[26];//主电机启停舵机PWM 0-255
-                                            ap2gcs_real.mbf_pwm = packbuf[27];//主电机前进后退舵机PWM 0-255
-                                            ap2gcs_real.rud_pwm = packbuf[28];//方向舵舵机PWM 0-255
-                                            ap2gcs_real.mm_state = packbuf[29];//主推进电机状态
-                                            ap2gcs_real.rud_p = packbuf[30];//方向舵机控制P增益
-                                            ap2gcs_real.rud_i = packbuf[31];//方向舵机控制I增益
-                                            ap2gcs_real.spare1 = packbuf[32];//预留
-                                            ap2gcs_real.boat_temp1 = packbuf[33];//[度]，艇内1号点温度
-                                            ap2gcs_real.boat_temp2 = packbuf[34];//[度]，艇内2号点温度
-                                            ap2gcs_real.boat_humi = packbuf[35];//[%]，艇内湿度
-                                            ap2gcs_real.wpno = packbuf[36];//下一航点编号，0xff表示是GCS发送的新航点
-                                            ap2gcs_real.spare2 = packbuf[37];
-                                            ap2gcs_real.spare3 = packbuf[38];
-                                            ap2gcs_real.spare4 = packbuf[39];
-                                        }
-
-
-                                        //实时数据接收计数
-                                        gbl_var.ap2gcs_real_cnt++;
+                                        comA_recvpacket.state = RECV_CHECKSUM;
                                     }
-                                    else if (comA_recvpacket.type == ID_AP2GCS_CMD)//AP-->GCS命令回传包
+                                    break;
+                                case RECV_CHECKSUM:
+                                    if (comA_recvpacket.checksum == c)
                                     {
-                                        ap2gcs_cmd_back.cmd_state = packbuf[0];
-                                        ap2gcs_cmd_back.cmd_test = packbuf[1];
-                                        ap2gcs_cmd_back.cmd_manu = packbuf[2];
-                                        ap2gcs_cmd_back.cmd_auto = packbuf[3];
-                                        ap2gcs_cmd_back.cmd_rkt = packbuf[4];
-                                        ap2gcs_cmd_back.cmd_aws = packbuf[5];
-                                        ap2gcs_cmd_back.cmd_mot = packbuf[6];
-                                        ap2gcs_cmd_back.cmd_flag = packbuf[7];
-                                        ap2gcs_cmd_back.moo_pwm = packbuf[8];
-                                        ap2gcs_cmd_back.mbf_pwm = packbuf[9];
-                                        ap2gcs_cmd_back.rud_pwm = packbuf[10];
-                                        ap2gcs_cmd_back.rud_p = packbuf[11];
-                                        ap2gcs_cmd_back.rud_i = packbuf[12];
-                                        ap2gcs_cmd_back.wpno = packbuf[13];
-                                        if ((ap2gcs_cmd_back.cmd_state == gcs2ap_cmd.cmd_state)
-                                            && (ap2gcs_cmd_back.cmd_state == 0x3))//测试状态时清限位设置命令
+                                        if (comA_recvpacket.type == ID_AP2GCS_REAL)//AP-->GCS的实时数据
                                         {
-                                            //如果D2-D0不为零，且D5-D3不为零，则表明上次发送的是舵机位置标定值，
-                                            //此时，记录该位置并将该指令清除
-                                            if (((ap2gcs_cmd_back.cmd_test & 0x7) != 0) && ((ap2gcs_cmd_back.cmd_test & 0x38) != 0))
+                                            //ap2gcs_real.lng = BitConverter.ToUInt32(packbuf,0);//[度*0.00001]
+                                            //ap2gcs_real.lat = BitConverter.ToUInt32(packbuf,4);//[度*0.00001]
+                                            //ap2gcs_real.spd = BitConverter.ToInt16(packbuf,8);//[Knot*0.01]，实时航速
+                                            //ap2gcs_real.dir = BitConverter.ToInt16(packbuf,10);//[度*0.01]，航向
+                                            //ap2gcs_real.pitch = BitConverter.ToInt16(packbuf,12);//[度*0.01]，俯仰
+                                            //ap2gcs_real.roll = BitConverter.ToInt16(packbuf,14);//[度*0.01]，滚转
+                                            //ap2gcs_real.yaw = BitConverter.ToInt16(packbuf,16);//[度*0.01]，偏航
+                                            //ap2gcs_real.moo_pwm = packbuf[18];//主电机启停舵机PWM 0-255
+                                            //ap2gcs_real.mbf_pwm = packbuf[19];//主电机前进后退舵机PWM 0-255
+                                            //ap2gcs_real.rud_pwm = packbuf[20];//方向舵舵机PWM 0-255
+                                            //ap2gcs_real.mm_state = packbuf[21];//主推进电机状态
+                                            //ap2gcs_real.rud_p = packbuf[22];//方向舵机控制P增益
+                                            //ap2gcs_real.rud_i = packbuf[23];//方向舵机控制I增益
+                                            //ap2gcs_real.spare1 = packbuf[24];//预留
+                                            //ap2gcs_real.boat_temp1 = packbuf[25];//[度]，艇内1号点温度
+                                            //ap2gcs_real.boat_temp2 = packbuf[26];//[度]，艇内2号点温度
+                                            //ap2gcs_real.boat_humi = packbuf[27];//[%]，艇内湿度
+                                            //ap2gcs_real.wpno = packbuf[28];//下一航点编号，0xff表示是GCS发送的新航点
+                                            //ap2gcs_real.spare2 = packbuf[29];
+
+
+
+
+
+                                            //wangbo
+                                            //ap2gcs_real.lng = BitConverter.ToUInt32(packbuf, 0);//[度*0.00001]
+                                            //ap2gcs_real.lat = BitConverter.ToUInt32(packbuf, 4);//[度*0.00001]
+                                            recv_tmp1 = BitConverter.ToUInt32(packbuf, 0);//[度*0.00001]
+                                            recv_tmp2 = BitConverter.ToUInt32(packbuf, 4);//[度*0.00001]
+                                            if ((recv_tmp1 < 1000000) || (recv_tmp2 < 1000000))//取消通信错误数据
                                             {
-                                                if (ap2gcs_cmd_back.cmd_test == 0x9)
-                                                {
-                                                    gbl_var.motor_on_pwm = ap2gcs_cmd_back.moo_pwm;
-                                                }
-                                                if (ap2gcs_cmd_back.cmd_test == 0x11)
-                                                {
-                                                    gbl_var.motor_off_pwm = ap2gcs_cmd_back.moo_pwm;
-                                                }
-                                                if (ap2gcs_cmd_back.cmd_test == 0x1a)
-                                                {
-                                                    gbl_var.motor_fwd_pwm = ap2gcs_cmd_back.mbf_pwm;
-                                                }
-                                                if (ap2gcs_cmd_back.cmd_test == 0x22)
-                                                {
-                                                    gbl_var.motor_bwd_pwm = ap2gcs_cmd_back.mbf_pwm;
-                                                }
-                                                if (ap2gcs_cmd_back.cmd_test == 0x2c)
-                                                {
-                                                    gbl_var.rud_left_pwm = ap2gcs_cmd_back.rud_pwm;
-                                                }
-                                                if (ap2gcs_cmd_back.cmd_test == 0x34)
-                                                {
-                                                    gbl_var.rud_right_pwm = ap2gcs_cmd_back.rud_pwm;
-                                                }
-                                                if (ap2gcs_cmd_back.cmd_test == 0x3c)
-                                                {
-                                                    gbl_var.rud_mid_pwm = ap2gcs_cmd_back.rud_pwm;
-                                                }
-                                                gcs2ap_cmd_new.cmd_test &= 0xc7;//将位置设置命令清除
-                                                gcs2ap_cmd_new.cmd_flag &= 0xf7;//清回传命令
-                                                gbl_var.send_req_cnt++;
-                                                gbl_var.send_cmd_req = true;
+
+                                                //also display when no GPS position ...FEIQING20161023
+                                                ap2gcs_real.lng = recv_tmp1;
+                                                ap2gcs_real.lat = recv_tmp2;
+                                                ap2gcs_real.spd = BitConverter.ToUInt32(packbuf, 8);//[Knot*0.01]，实时航速
+                                                ap2gcs_real.dir_gps = BitConverter.ToInt16(packbuf, 12);//[度*0.01]，GPS航向
+                                                ap2gcs_real.dir_heading = BitConverter.ToInt16(packbuf, 14);//[度*0.01]，机头朝向
+                                                ap2gcs_real.dir_target = BitConverter.ToInt16(packbuf, 16);//[度*0.01]，目标点方向
+                                                ap2gcs_real.dir_nav = BitConverter.ToInt16(packbuf, 18);//[度*0.01]，导航航向
+                                                ap2gcs_real.pitch = BitConverter.ToInt16(packbuf, 20);//[度*0.01]，俯仰
+                                                ap2gcs_real.roll = BitConverter.ToInt16(packbuf, 22);//[度*0.01]，滚转
+                                                ap2gcs_real.yaw = BitConverter.ToInt16(packbuf, 24);//[度*0.01]，偏航
+                                                ap2gcs_real.moo_pwm = packbuf[26];//主电机启停舵机PWM 0-255
+                                                ap2gcs_real.mbf_pwm = packbuf[27];//主电机前进后退舵机PWM 0-255
+                                                ap2gcs_real.rud_pwm = packbuf[28];//方向舵舵机PWM 0-255
+                                                ap2gcs_real.mm_state = packbuf[29];//主推进电机状态
+                                                ap2gcs_real.rud_p = packbuf[30];//方向舵机控制P增益
+                                                ap2gcs_real.rud_i = packbuf[31];//方向舵机控制I增益
+                                                ap2gcs_real.spare1 = packbuf[32];//预留
+                                                ap2gcs_real.boat_temp1 = packbuf[33];//[度]，艇内1号点温度
+                                                ap2gcs_real.boat_temp2 = packbuf[34];//[度]，艇内2号点温度
+                                                ap2gcs_real.boat_humi = packbuf[35];//[%]，艇内湿度
+                                                ap2gcs_real.wpno = packbuf[36];//下一航点编号，0xff表示是GCS发送的新航点
+                                                ap2gcs_real.spare2 = packbuf[37];
+                                                ap2gcs_real.spare3 = packbuf[38];
+                                                ap2gcs_real.spare4 = packbuf[39];
+                                                ap2gcs_real.spare5 = packbuf[40];
+                                                ap2gcs_real.spare6 = packbuf[41];
+                                                ap2gcs_real.spare7 = packbuf[42];
+                                                ap2gcs_real.spare8 = packbuf[43];
+                                                ap2gcs_real.spare9 = BitConverter.ToUInt32(packbuf, 44);
+                                                ap2gcs_real.spare10 = BitConverter.ToUInt32(packbuf, 48);
+                                                ap2gcs_real.spare11 = BitConverter.ToUInt32(packbuf, 52);
+                                                ap2gcs_real.spare12 = BitConverter.ToUInt32(packbuf, 56);
+                                                ap2gcs_real.spare13 = BitConverter.ToUInt32(packbuf, 60);
+                                                ap2gcs_real.spare14 = BitConverter.ToUInt32(packbuf, 64);
+                                                ap2gcs_real.spare15 = BitConverter.ToUInt32(packbuf, 68);
+
                                             }
-                                        }
-
-                                    }
-                                    else if (comA_recvpacket.type == ID_AP2GCS_WP)//AP-->GCS航点回传包
-                                    {
-                                       
-                                        ap2gcs_wp_back.type = packbuf[0];
-                                        ap2gcs_wp_back.total = packbuf[1];
-                                        ap2gcs_wp_back.no = packbuf[2];
-                                        ap2gcs_wp_back.spd = packbuf[3];
-                                        ap2gcs_wp_back.lng = BitConverter.ToUInt32(packbuf, 4);//[度*0.00001]
-                                        ap2gcs_wp_back.lat = BitConverter.ToUInt32(packbuf, 8);//[度*0.00001]
-                                        gbl_var.ap2gcs_wp_cnt++;
-                                        error6++;
-
-                                        gbl_var.all_wp_num = ap2gcs_wp_back.total;
-
-                                        //下面的不知道为什么放在这里不对
-                                        //textBox_all_wp_num.Text = ap2gcs_wp_back.total.ToString();
-                                        //textBox_all_wp_num.Text = Convert.ToString(ap2gcs_wp_back.total);
-
-                                        if (gbl_var.parameter_set_get_wp)
-                                        {
-                                           
-                                            //把航点存储在totalWPlist中去
-                                            //totalWPlist[ap2gcs_wp_back.no].Lng = ap2gcs_wp_back.lng;
-                                            //totalWPlist[ap2gcs_wp_back.no].Lat = ap2gcs_wp_back.lat;
-                                            waypoint_test.Lng = ap2gcs_wp_back.lng*0.00001;
-                                            waypoint_test.Lat = ap2gcs_wp_back.lat * 0.00001;
-
-                                            //totalWPlist.Add(new PointLatLngAlt(homePos.Lat, homePos.Lng, 0.0, "H"));
-                                            totalWPlist.Add(new PointLatLngAlt(waypoint_test.Lat, waypoint_test.Lng, 0.0, Convert.ToString(ap2gcs_wp_back.no)));
-
-                                            if (gcs2ap_parameter.value==127)
+                                            else
                                             {
+                                                ap2gcs_real.lng = recv_tmp1;
+                                                ap2gcs_real.lat = recv_tmp2;
+                                                ap2gcs_real.spd = BitConverter.ToUInt32(packbuf, 8);//[Knot*0.01]，实时航速
+                                                ap2gcs_real.dir_gps = BitConverter.ToInt16(packbuf, 12);//[度*0.01]，GPS航向
+                                                ap2gcs_real.dir_heading = BitConverter.ToInt16(packbuf, 14);//[度*0.01]，机头朝向
+                                                ap2gcs_real.dir_target = BitConverter.ToInt16(packbuf, 16);//[度*0.01]，目标点方向
+                                                ap2gcs_real.dir_nav = BitConverter.ToInt16(packbuf, 18);//[度*0.01]，导航航向
+                                                ap2gcs_real.pitch = BitConverter.ToInt16(packbuf, 20);//[度*0.01]，俯仰
+                                                ap2gcs_real.roll = BitConverter.ToInt16(packbuf, 22);//[度*0.01]，滚转
+                                                ap2gcs_real.yaw = BitConverter.ToInt16(packbuf, 24);//[度*0.01]，偏航
+                                                ap2gcs_real.moo_pwm = packbuf[26];//主电机启停舵机PWM 0-255
+                                                ap2gcs_real.mbf_pwm = packbuf[27];//主电机前进后退舵机PWM 0-255
+                                                ap2gcs_real.rud_pwm = packbuf[28];//方向舵舵机PWM 0-255
+                                                ap2gcs_real.mm_state = packbuf[29];//主推进电机状态
+                                                ap2gcs_real.rud_p = packbuf[30];//方向舵机控制P增益
+                                                ap2gcs_real.rud_i = packbuf[31];//方向舵机控制I增益
+                                                ap2gcs_real.spare1 = packbuf[32];//预留
+                                                ap2gcs_real.boat_temp1 = packbuf[33];//[度]，艇内1号点温度
+                                                ap2gcs_real.boat_temp2 = packbuf[34];//[度]，艇内2号点温度
+                                                ap2gcs_real.boat_humi = packbuf[35];//[%]，艇内湿度
+                                                ap2gcs_real.wpno = packbuf[36];//下一航点编号，0xff表示是GCS发送的新航点
+                                                ap2gcs_real.spare2 = packbuf[37];
+                                                ap2gcs_real.spare3 = packbuf[38];
+                                                ap2gcs_real.spare4 = packbuf[39];
+                                                ap2gcs_real.spare5 = packbuf[40];
+                                                ap2gcs_real.spare6 = packbuf[41];
+                                                ap2gcs_real.spare7 = packbuf[42];
+                                                ap2gcs_real.spare8 = packbuf[43];
+
+                                                ap2gcs_real.spare9 = BitConverter.ToUInt32(packbuf, 44);
+                                                ap2gcs_real.spare10 = BitConverter.ToUInt32(packbuf, 48);
+                                                ap2gcs_real.spare11 = BitConverter.ToUInt32(packbuf, 52);
+                                                ap2gcs_real.spare12 = BitConverter.ToUInt32(packbuf, 56);
+                                                ap2gcs_real.spare13 = BitConverter.ToUInt32(packbuf, 60);
+                                                ap2gcs_real.spare14 = BitConverter.ToUInt32(packbuf, 64);
+                                                ap2gcs_real.spare15 = BitConverter.ToUInt32(packbuf, 68);
+                                            }
+
+
+                                            //实时数据接收计数
+                                            gbl_var.ap2gcs_real_cnt++;
+                                        }
+                                        else if (comA_recvpacket.type == ID_AP2GCS_CMD)//AP-->GCS命令回传包
+                                        {
+                                            ap2gcs_cmd_back.cmd_state = packbuf[0];
+                                            ap2gcs_cmd_back.cmd_test = packbuf[1];
+                                            ap2gcs_cmd_back.cmd_manu = packbuf[2];
+                                            ap2gcs_cmd_back.cmd_auto = packbuf[3];
+                                            ap2gcs_cmd_back.cmd_rkt = packbuf[4];
+                                            ap2gcs_cmd_back.cmd_aws = packbuf[5];
+                                            ap2gcs_cmd_back.cmd_mot = packbuf[6];
+                                            ap2gcs_cmd_back.cmd_flag = packbuf[7];
+                                            ap2gcs_cmd_back.moo_pwm = packbuf[8];
+                                            ap2gcs_cmd_back.mbf_pwm = packbuf[9];
+                                            ap2gcs_cmd_back.rud_pwm = packbuf[10];
+                                            ap2gcs_cmd_back.rud_p = packbuf[11];
+                                            ap2gcs_cmd_back.rud_i = packbuf[12];
+                                            ap2gcs_cmd_back.wpno = packbuf[13];
+                                            if ((ap2gcs_cmd_back.cmd_state == gcs2ap_cmd.cmd_state)
+                                                && (ap2gcs_cmd_back.cmd_state == 0x3))//测试状态时清限位设置命令
+                                            {
+                                                //如果D2-D0不为零，且D5-D3不为零，则表明上次发送的是舵机位置标定值，
+                                                //此时，记录该位置并将该指令清除
+                                                if (((ap2gcs_cmd_back.cmd_test & 0x7) != 0) && ((ap2gcs_cmd_back.cmd_test & 0x38) != 0))
+                                                {
+                                                    if (ap2gcs_cmd_back.cmd_test == 0x9)
+                                                    {
+                                                        gbl_var.motor_on_pwm = ap2gcs_cmd_back.moo_pwm;
+                                                    }
+                                                    if (ap2gcs_cmd_back.cmd_test == 0x11)
+                                                    {
+                                                        gbl_var.motor_off_pwm = ap2gcs_cmd_back.moo_pwm;
+                                                    }
+                                                    if (ap2gcs_cmd_back.cmd_test == 0x1a)
+                                                    {
+                                                        gbl_var.motor_fwd_pwm = ap2gcs_cmd_back.mbf_pwm;
+                                                    }
+                                                    if (ap2gcs_cmd_back.cmd_test == 0x22)
+                                                    {
+                                                        gbl_var.motor_bwd_pwm = ap2gcs_cmd_back.mbf_pwm;
+                                                    }
+                                                    if (ap2gcs_cmd_back.cmd_test == 0x2c)
+                                                    {
+                                                        gbl_var.rud_left_pwm = ap2gcs_cmd_back.rud_pwm;
+                                                    }
+                                                    if (ap2gcs_cmd_back.cmd_test == 0x34)
+                                                    {
+                                                        gbl_var.rud_right_pwm = ap2gcs_cmd_back.rud_pwm;
+                                                    }
+                                                    if (ap2gcs_cmd_back.cmd_test == 0x3c)
+                                                    {
+                                                        gbl_var.rud_mid_pwm = ap2gcs_cmd_back.rud_pwm;
+                                                    }
+                                                    gcs2ap_cmd_new.cmd_test &= 0xc7;//将位置设置命令清除
+                                                    gcs2ap_cmd_new.cmd_flag &= 0xf7;//清回传命令
+                                                    gbl_var.send_req_cnt++;
+                                                    gbl_var.send_cmd_req = true;
+                                                }
+                                            }
+
+                                        }
+                                        else if (comA_recvpacket.type == ID_AP2GCS_WP)//AP-->GCS航点回传包
+                                        {
+
+                                            ap2gcs_wp_back.type = packbuf[0];
+                                            ap2gcs_wp_back.total = packbuf[1];
+                                            ap2gcs_wp_back.no = packbuf[2];
+                                            ap2gcs_wp_back.spd = packbuf[3];
+                                            ap2gcs_wp_back.lng = BitConverter.ToUInt32(packbuf, 4);//[度*0.00001]
+                                            ap2gcs_wp_back.lat = BitConverter.ToUInt32(packbuf, 8);//[度*0.00001]
+                                            gbl_var.ap2gcs_wp_cnt++;
+                                            error6++;
+
+                                            gbl_var.all_wp_num = ap2gcs_wp_back.total;
+
+                                            //下面的不知道为什么放在这里不对
+                                            //textBox_all_wp_num.Text = ap2gcs_wp_back.total.ToString();
+                                            //textBox_all_wp_num.Text = Convert.ToString(ap2gcs_wp_back.total);
+
+                                            if (gbl_var.parameter_set_get_wp)
+                                            {
+
+                                                //把航点存储在totalWPlist中去
+                                                //totalWPlist[ap2gcs_wp_back.no].Lng = ap2gcs_wp_back.lng;
+                                                //totalWPlist[ap2gcs_wp_back.no].Lat = ap2gcs_wp_back.lat;
+                                                waypoint_test.Lng = ap2gcs_wp_back.lng * 0.00001;
+                                                waypoint_test.Lat = ap2gcs_wp_back.lat * 0.00001;
+
+                                                //totalWPlist.Add(new PointLatLngAlt(homePos.Lat, homePos.Lng, 0.0, "H"));
+                                                totalWPlist.Add(new PointLatLngAlt(waypoint_test.Lat, waypoint_test.Lng, 0.0, Convert.ToString(ap2gcs_wp_back.no)));
+
+                                                if (gcs2ap_parameter.value == 127)
+                                                {
+
+                                                    if (ap2gcs_wp_back.no == ap2gcs_wp_back.total - 1)
+                                                    {
+                                                        //接收所有的航点接收完全，就重新航点
+                                                        gbl_var.parameter_set_get_wp = false;
+
+
+
+                                                        ReDrawAllWP();//重画全部航点
+                                                        ReDrawAllRoute();//重画全部路径
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    //每次接收1个航点，就重新画图
+                                                    gbl_var.parameter_set_get_wp = false;
+                                                    ReDrawAllWP();//重画全部航点
+                                                    ReDrawAllRoute();//重画全部路径
+
+
+                                                }
 
                                                 if (ap2gcs_wp_back.no == ap2gcs_wp_back.total - 1)
                                                 {
-                                                    //接收所有的航点接收完全，就重新航点
+                                                    //接收航点接收完全，就重新航点
                                                     gbl_var.parameter_set_get_wp = false;
 
 
@@ -721,61 +817,40 @@ namespace BoatGCS
                                                     ReDrawAllWP();//重画全部航点
                                                     ReDrawAllRoute();//重画全部路径
                                                 }
+
                                             }
                                             else
                                             {
-                                                //每次接收1个航点，就重新画图
-                                                gbl_var.parameter_set_get_wp = false;
-                                                ReDrawAllWP();//重画全部航点
-                                                ReDrawAllRoute();//重画全部路径
-
-
-                                            }
-
-                                            if (ap2gcs_wp_back.no == ap2gcs_wp_back.total-1)
-                                            {
-                                                //接收航点接收完全，就重新航点
-                                                gbl_var.parameter_set_get_wp = false;
-
-
-
-                                                ReDrawAllWP();//重画全部航点
-                                                ReDrawAllRoute();//重画全部路径
-                                            }
-
-                                        }
-                                        else
-                                        {
                                                 if ((gcs2ap_wp.no == ap2gcs_wp_back.no) && (gcs2ap_wp.type == ap2gcs_wp_back.type)
                                                 && (gcs2ap_wp.total == ap2gcs_wp_back.total) && (gcs2ap_wp.lat == ap2gcs_wp_back.lat)
                                                 && (gcs2ap_wp.lng == ap2gcs_wp_back.lng) && (gcs2ap_wp.spd == ap2gcs_wp_back.spd))
-                                            {
-                                                error7++;
-                                                if ((gcs2ap_wp.type == 1) && ((gcs2ap_wp.no + 1) < gcs2ap_wp.total))//全部航点还没有都发送完
-                                                //if ((gcs2ap_wp.type == 1) && (() <= gcs2ap_wp.total))//全部航点还没有都发送完
                                                 {
-                                                    //firstWp++;
-                                                    gcs2ap_wp.no++;
-                                                    gcs2ap_wp.spd = Convert.ToByte(totalWPlist[gcs2ap_wp.no].Alt * 10);
-                                                    gcs2ap_wp.lng = Convert.ToUInt32(totalWPlist[gcs2ap_wp.no].Lng * 100000);
-                                                    gcs2ap_wp.lat = Convert.ToUInt32(totalWPlist[gcs2ap_wp.no].Lat * 100000);
-                                                    gbl_var.send_req_cnt++;
-                                                    gbl_var.send_wp_req = true;
-                                                    error8++;
-                                                }
-                                                else
-                                                {
-                                                    gcs2ap_wp.type = 0x0;//不是要发送全部航点，或者已经全部发送完毕，则不再发送  
-                                                    error4++;
-                                                }
+                                                    error7++;
+                                                    if ((gcs2ap_wp.type == 1) && ((gcs2ap_wp.no + 1) < gcs2ap_wp.total))//全部航点还没有都发送完
+                                                    //if ((gcs2ap_wp.type == 1) && (() <= gcs2ap_wp.total))//全部航点还没有都发送完
+                                                    {
+                                                        //firstWp++;
+                                                        gcs2ap_wp.no++;
+                                                        gcs2ap_wp.spd = Convert.ToByte(totalWPlist[gcs2ap_wp.no].Alt * 10);
+                                                        gcs2ap_wp.lng = Convert.ToUInt32(totalWPlist[gcs2ap_wp.no].Lng * 100000);
+                                                        gcs2ap_wp.lat = Convert.ToUInt32(totalWPlist[gcs2ap_wp.no].Lat * 100000);
+                                                        gbl_var.send_req_cnt++;
+                                                        gbl_var.send_wp_req = true;
+                                                        error8++;
+                                                    }
+                                                    else
+                                                    {
+                                                        gcs2ap_wp.type = 0x0;//不是要发送全部航点，或者已经全部发送完毕，则不再发送  
+                                                        error4++;
+                                                    }
 
+                                                }
+                                                else//接收错误，需要重发
+                                                {
+                                                    //to be done
+                                                    error5++;
+                                                }
                                             }
-                                            else//接收错误，需要重发
-                                            {
-                                                //to be done
-                                                error5++;
-                                            }
-                                        }
 
 #if false
                                         //王博 这是之前的，现在加个限制就是地面站重启后获取航点
@@ -811,68 +886,70 @@ namespace BoatGCS
                                         }
 #endif
 
-                                    }
-                                    else if (comA_recvpacket.type == ID_AP2GCS_ACK)//AP-->GCS接收确认包
-                                    {
-                                        ap2gcs_ack.type = packbuf[0];//接收数据包类型
-                                        ap2gcs_ack.cnt = packbuf[1];//接收数据包编号
-                                        ap2gcs_ack.state = packbuf[2];//接收数据包状态
-                                        ap2gcs_ack.spare = packbuf[3];
-                                        ap2gcs_ack.hhmmss = BitConverter.ToUInt32(packbuf, 4);//接收数据包时间
-                                        gbl_var.ap2gcs_ack_cnt++;
-                                    }
-                                    else if (comA_recvpacket.type == ID_AP2GCS_AWS)//AP-->GCS气象站数据包
-                                    {
-                                        ap2gcs_aws.hhmmss = BitConverter.ToUInt32(packbuf, 0);//发送数据包时间
-                                        ap2gcs_aws.lng = BitConverter.ToUInt32(packbuf, 4);//[度*0.00001]
-                                        ap2gcs_aws.lat = BitConverter.ToUInt32(packbuf, 8);//[度*0.00001]
-                                        ap2gcs_aws.temp = BitConverter.ToInt16(packbuf, 12);//[度*0.01]
-                                        ap2gcs_aws.dewtemp = BitConverter.ToInt16(packbuf, 14);//[度*0.01]
-                                        ap2gcs_aws.humi = BitConverter.ToUInt16(packbuf, 16);//[*0.01]
-                                        ap2gcs_aws.airpress = BitConverter.ToUInt16(packbuf, 18);//[*0.01]
-                                        ap2gcs_aws.winddir = BitConverter.ToInt16(packbuf, 20);//[*0.01]
-                                        ap2gcs_aws.windspd = BitConverter.ToInt16(packbuf, 22);//[*0.01]
-                                        gbl_var.ap2gcs_aws_cnt++;
-                                    }
-                                    else if (comA_recvpacket.type == ID_AP2GCS_PARAMETER)
-                                    {
-                                        ap2gcs_parameter.type = packbuf[0];
-                                        ap2gcs_parameter.value = packbuf[1];
-
-                                        switch(Convert.ToInt32(ap2gcs_parameter.type))
-                                        {
-                                            case PARAMETER_GET_CRUISE_THROTTLE:
-                                                //王博wangbo这里很奇怪，为什么这里赋值就会跳到catch那里，到底哪里有溢出错误呢
-                                                //可能是因为多线程，这里无法访问，错误显示是text=函数求值需要运行所有线程
-                                                //textBox_get_throttle.Text = Convert.ToString(ap2gcs_parameter.value);
-                                                gbl_var.parameter_get_cruise_throttle = true;
-                                                break;
-                                            case PARAMETER_GET_ARRIVE_RADIUS:
-                                                //textBox_get_arrive_radius.Text = Convert.ToString(ap2gcs_parameter.value);
-                                                gbl_var.parameter_get_arrive_radius = true;
-                                                break;
-                                            case PARAMETER_GET_CTE_MAX_CORRECT:
-                                                gbl_var.parameter_get_max_head_error_angle = true;
-                                                break;
-                                            case PARAMETER_GET_ROTARY_POSITION:
-                                                gbl_var.parameter_get_rotary_position = true;
-                                                break;
-
-                                            default:
-                                                break;
                                         }
+                                        else if (comA_recvpacket.type == ID_AP2GCS_ACK)//AP-->GCS接收确认包
+                                        {
+                                            ap2gcs_ack.type = packbuf[0];//接收数据包类型
+                                            ap2gcs_ack.cnt = packbuf[1];//接收数据包编号
+                                            ap2gcs_ack.state = packbuf[2];//接收数据包状态
+                                            ap2gcs_ack.spare = packbuf[3];
+                                            ap2gcs_ack.hhmmss = BitConverter.ToUInt32(packbuf, 4);//接收数据包时间
+                                            gbl_var.ap2gcs_ack_cnt++;
+                                        }
+                                        else if (comA_recvpacket.type == ID_AP2GCS_AWS)//AP-->GCS气象站数据包
+                                        {
+                                            ap2gcs_aws.hhmmss = BitConverter.ToUInt32(packbuf, 0);//发送数据包时间
+                                            ap2gcs_aws.lng = BitConverter.ToUInt32(packbuf, 4);//[度*0.00001]
+                                            ap2gcs_aws.lat = BitConverter.ToUInt32(packbuf, 8);//[度*0.00001]
+                                            ap2gcs_aws.temp = BitConverter.ToInt16(packbuf, 12);//[度*0.01]
+                                            ap2gcs_aws.dewtemp = BitConverter.ToInt16(packbuf, 14);//[度*0.01]
+                                            ap2gcs_aws.humi = BitConverter.ToUInt16(packbuf, 16);//[*0.01]
+                                            ap2gcs_aws.airpress = BitConverter.ToUInt16(packbuf, 18);//[*0.01]
+                                            ap2gcs_aws.winddir = BitConverter.ToInt16(packbuf, 20);//[*0.01]
+                                            ap2gcs_aws.windspd = BitConverter.ToInt16(packbuf, 22);//[*0.01]
+                                            gbl_var.ap2gcs_aws_cnt++;
+                                        }
+                                        else if (comA_recvpacket.type == ID_AP2GCS_PARAMETER)
+                                        {
+                                            ap2gcs_parameter.type = packbuf[0];
+                                            ap2gcs_parameter.value = packbuf[1];
 
+                                            switch (Convert.ToInt32(ap2gcs_parameter.type))
+                                            {
+                                                case PARAMETER_GET_CRUISE_THROTTLE:
+                                                    //王博wangbo这里很奇怪，为什么这里赋值就会跳到catch那里，到底哪里有溢出错误呢
+                                                    //可能是因为多线程，这里无法访问，错误显示是text=函数求值需要运行所有线程
+                                                    //textBox_get_throttle.Text = Convert.ToString(ap2gcs_parameter.value);
+                                                    gbl_var.parameter_get_cruise_throttle = true;
+                                                    break;
+                                                case PARAMETER_GET_ARRIVE_RADIUS:
+                                                    //textBox_get_arrive_radius.Text = Convert.ToString(ap2gcs_parameter.value);
+                                                    gbl_var.parameter_get_arrive_radius = true;
+                                                    break;
+                                                case PARAMETER_GET_CTE_MAX_CORRECT:
+                                                    gbl_var.parameter_get_max_head_error_angle = true;
+                                                    break;
+                                                case PARAMETER_GET_ROTARY_POSITION:
+                                                    gbl_var.parameter_get_rotary_position = true;
+                                                    break;
+
+                                                default:
+                                                    break;
+                                            }
+
+                                        }
                                     }
-                                }
-                                else
-                                {
-                                    error3++;
-                                }
-                                comA_recvpacket.state = RECV_HEAD1;
-                                packbuflen = 0;
+                                    else
+                                    {
+                                        error3++;
+                                    }
+                                    comA_recvpacket.state = RECV_HEAD1;
+                                    packbuflen = 0;
 
-                                break;
+                                    break;
+                            }
                         }
+                        com_recv_cnt = 0;//Add 20161119
                     }
                 }
                 catch
@@ -1429,10 +1506,11 @@ namespace BoatGCS
                     comPortA.DataBits = 8;//设置数据位
                     comPortA.StopBits = StopBits.One;
                     comPortA.Parity = Parity.None;
-                    comPortA.ReadTimeout = 5000;//[ms]
-                    comPortA.WriteTimeout = 5000;//[ms]
+                    comPortA.ReadTimeout = 1000;//[ms]
+                    comPortA.WriteTimeout = 1000;//[ms]
                     comPortA.ReadBufferSize = 1024;
                     comPortA.WriteBufferSize = 1024;
+
                     comPortA.Open();//打开串口
                 }
                 else
