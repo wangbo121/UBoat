@@ -56,11 +56,13 @@
             this.txtBox_parameter = new System.Windows.Forms.TextBox();
             this.cmbBox_parameter = new System.Windows.Forms.ComboBox();
             this.intermediate_value = new System.Windows.Forms.GroupBox();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.discharge2_state = new System.Windows.Forms.Label();
+            this.discharge1_state = new System.Windows.Forms.Label();
             this.textBox_toggle_voltage1 = new System.Windows.Forms.TextBox();
             this.label63 = new System.Windows.Forms.Label();
-            this.textBox_toggle_voltage0 = new System.Windows.Forms.TextBox();
             this.label62 = new System.Windows.Forms.Label();
+            this.textBox_toggle_voltage0 = new System.Windows.Forms.TextBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.teBox_ap_dir_nav = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this.teBox_ap_dir_target = new System.Windows.Forms.TextBox();
@@ -100,24 +102,26 @@
             this.teBox_ap_lng = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label61 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.teBox_ws_dewtemp = new System.Windows.Forms.TextBox();
-            this.teBox_ws_time = new System.Windows.Forms.TextBox();
             this.teBox_ws_lat = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
+            this.teBox_ws_time = new System.Windows.Forms.TextBox();
             this.teBox_ws_lng = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
-            this.teBox_ws_winddir = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.teBox_ws_windspd = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
             this.teBox_ws_airpress = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
             this.teBox_ws_humi = new System.Windows.Forms.TextBox();
+            this.teBox_ws_winddir = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.teBox_ws_temp = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.teBox_ws_windspd = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.checkBox_throttle_reverse = new System.Windows.Forms.CheckBox();
             this.checkBox_rudder_reverse = new System.Windows.Forms.CheckBox();
@@ -314,10 +318,7 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label61 = new System.Windows.Forms.Label();
-            this.discharge1_state = new System.Windows.Forms.Label();
-            this.discharge2_state = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -605,6 +606,64 @@
             this.intermediate_value.TabStop = false;
             this.intermediate_value.Text = "切换器";
             // 
+            // discharge2_state
+            // 
+            this.discharge2_state.AutoSize = true;
+            this.discharge2_state.Location = new System.Drawing.Point(199, 45);
+            this.discharge2_state.Name = "discharge2_state";
+            this.discharge2_state.Size = new System.Drawing.Size(56, 14);
+            this.discharge2_state.TabIndex = 61;
+            this.discharge2_state.Text = "label64";
+            // 
+            // discharge1_state
+            // 
+            this.discharge1_state.AutoSize = true;
+            this.discharge1_state.Location = new System.Drawing.Point(15, 45);
+            this.discharge1_state.Name = "discharge1_state";
+            this.discharge1_state.Size = new System.Drawing.Size(56, 14);
+            this.discharge1_state.TabIndex = 60;
+            this.discharge1_state.Text = "label64";
+            // 
+            // textBox_toggle_voltage1
+            // 
+            this.textBox_toggle_voltage1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_toggle_voltage1.Location = new System.Drawing.Point(325, 16);
+            this.textBox_toggle_voltage1.Name = "textBox_toggle_voltage1";
+            this.textBox_toggle_voltage1.Size = new System.Drawing.Size(59, 23);
+            this.textBox_toggle_voltage1.TabIndex = 58;
+            this.textBox_toggle_voltage1.Text = "0";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label63.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label63.Location = new System.Drawing.Point(199, 19);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(120, 14);
+            this.label63.TabIndex = 59;
+            this.label63.Text = "切换器电池2电压";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label62.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label62.Location = new System.Drawing.Point(11, 19);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(120, 14);
+            this.label62.TabIndex = 57;
+            this.label62.Text = "切换器电池1电压";
+            // 
+            // textBox_toggle_voltage0
+            // 
+            this.textBox_toggle_voltage0.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_toggle_voltage0.Location = new System.Drawing.Point(134, 16);
+            this.textBox_toggle_voltage0.Name = "textBox_toggle_voltage0";
+            this.textBox_toggle_voltage0.Size = new System.Drawing.Size(59, 23);
+            this.textBox_toggle_voltage0.TabIndex = 56;
+            this.textBox_toggle_voltage0.Text = "0";
+            // 
             // groupBox11
             // 
             this.groupBox11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -654,46 +713,6 @@
             this.groupBox11.TabIndex = 15;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "自驾数据";
-            // 
-            // textBox_toggle_voltage1
-            // 
-            this.textBox_toggle_voltage1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox_toggle_voltage1.Location = new System.Drawing.Point(325, 16);
-            this.textBox_toggle_voltage1.Name = "textBox_toggle_voltage1";
-            this.textBox_toggle_voltage1.Size = new System.Drawing.Size(59, 23);
-            this.textBox_toggle_voltage1.TabIndex = 58;
-            this.textBox_toggle_voltage1.Text = "0";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label63.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label63.Location = new System.Drawing.Point(199, 19);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(120, 14);
-            this.label63.TabIndex = 59;
-            this.label63.Text = "切换器电池2电压";
-            // 
-            // textBox_toggle_voltage0
-            // 
-            this.textBox_toggle_voltage0.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox_toggle_voltage0.Location = new System.Drawing.Point(134, 16);
-            this.textBox_toggle_voltage0.Name = "textBox_toggle_voltage0";
-            this.textBox_toggle_voltage0.Size = new System.Drawing.Size(59, 23);
-            this.textBox_toggle_voltage0.TabIndex = 56;
-            this.textBox_toggle_voltage0.Text = "0";
-            // 
-            // label62
-            // 
-            this.label62.AutoSize = true;
-            this.label62.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label62.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label62.Location = new System.Drawing.Point(11, 19);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(120, 14);
-            this.label62.TabIndex = 57;
-            this.label62.Text = "切换器电池1电压";
             // 
             // teBox_ap_dir_nav
             // 
@@ -1063,6 +1082,7 @@
             this.teBox_ap_lng.Size = new System.Drawing.Size(104, 23);
             this.teBox_ap_lng.TabIndex = 4;
             this.teBox_ap_lng.Text = "0";
+            this.teBox_ap_lng.TextChanged += new System.EventHandler(this.teBox_ap_lng_TextChanged);
             // 
             // label24
             // 
@@ -1107,6 +1127,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "气象站-火箭";
             // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox3.Location = new System.Drawing.Point(318, 22);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(59, 23);
+            this.textBox3.TabIndex = 33;
+            this.textBox3.Text = "0";
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label61.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label61.Location = new System.Drawing.Point(245, 25);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(67, 14);
+            this.label61.TabIndex = 34;
+            this.label61.Text = "火箭高度";
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -1138,14 +1178,6 @@
             this.teBox_ws_dewtemp.TabIndex = 30;
             this.teBox_ws_dewtemp.Text = "0";
             // 
-            // teBox_ws_time
-            // 
-            this.teBox_ws_time.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_ws_time.Location = new System.Drawing.Point(56, 64);
-            this.teBox_ws_time.Name = "teBox_ws_time";
-            this.teBox_ws_time.Size = new System.Drawing.Size(59, 23);
-            this.teBox_ws_time.TabIndex = 28;
-            // 
             // teBox_ws_lat
             // 
             this.teBox_ws_lat.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -1166,6 +1198,14 @@
             this.label30.TabIndex = 25;
             this.label30.Text = "纬度";
             // 
+            // teBox_ws_time
+            // 
+            this.teBox_ws_time.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.teBox_ws_time.Location = new System.Drawing.Point(56, 64);
+            this.teBox_ws_time.Name = "teBox_ws_time";
+            this.teBox_ws_time.Size = new System.Drawing.Size(59, 23);
+            this.teBox_ws_time.TabIndex = 28;
+            // 
             // teBox_ws_lng
             // 
             this.teBox_ws_lng.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -1185,46 +1225,6 @@
             this.label31.Size = new System.Drawing.Size(37, 14);
             this.label31.TabIndex = 23;
             this.label31.Text = "经度";
-            // 
-            // teBox_ws_winddir
-            // 
-            this.teBox_ws_winddir.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_ws_winddir.Location = new System.Drawing.Point(56, 22);
-            this.teBox_ws_winddir.Name = "teBox_ws_winddir";
-            this.teBox_ws_winddir.Size = new System.Drawing.Size(59, 23);
-            this.teBox_ws_winddir.TabIndex = 12;
-            this.teBox_ws_winddir.Text = "0";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label36.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label36.Location = new System.Drawing.Point(13, 25);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(37, 14);
-            this.label36.TabIndex = 13;
-            this.label36.Text = "风向";
-            // 
-            // teBox_ws_windspd
-            // 
-            this.teBox_ws_windspd.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_ws_windspd.Location = new System.Drawing.Point(168, 22);
-            this.teBox_ws_windspd.Name = "teBox_ws_windspd";
-            this.teBox_ws_windspd.Size = new System.Drawing.Size(59, 23);
-            this.teBox_ws_windspd.TabIndex = 10;
-            this.teBox_ws_windspd.Text = "0";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label37.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label37.Location = new System.Drawing.Point(125, 25);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(37, 14);
-            this.label37.TabIndex = 11;
-            this.label37.Text = "风速";
             // 
             // teBox_ws_airpress
             // 
@@ -1255,6 +1255,15 @@
             this.teBox_ws_humi.TabIndex = 6;
             this.teBox_ws_humi.Text = "0";
             // 
+            // teBox_ws_winddir
+            // 
+            this.teBox_ws_winddir.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.teBox_ws_winddir.Location = new System.Drawing.Point(56, 22);
+            this.teBox_ws_winddir.Name = "teBox_ws_winddir";
+            this.teBox_ws_winddir.Size = new System.Drawing.Size(59, 23);
+            this.teBox_ws_winddir.TabIndex = 12;
+            this.teBox_ws_winddir.Text = "0";
+            // 
             // label39
             // 
             this.label39.AutoSize = true;
@@ -1275,6 +1284,17 @@
             this.teBox_ws_temp.TabIndex = 4;
             this.teBox_ws_temp.Text = "0";
             // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label36.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label36.Location = new System.Drawing.Point(13, 25);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(37, 14);
+            this.label36.TabIndex = 13;
+            this.label36.Text = "风向";
+            // 
             // label40
             // 
             this.label40.AutoSize = true;
@@ -1286,9 +1306,30 @@
             this.label40.TabIndex = 5;
             this.label40.Text = "温度";
             // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label37.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label37.Location = new System.Drawing.Point(125, 25);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(37, 14);
+            this.label37.TabIndex = 11;
+            this.label37.Text = "风速";
+            // 
+            // teBox_ws_windspd
+            // 
+            this.teBox_ws_windspd.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.teBox_ws_windspd.Location = new System.Drawing.Point(168, 22);
+            this.teBox_ws_windspd.Name = "teBox_ws_windspd";
+            this.teBox_ws_windspd.Size = new System.Drawing.Size(59, 23);
+            this.teBox_ws_windspd.TabIndex = 10;
+            this.teBox_ws_windspd.Text = "0";
+            // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.checkBox_throttle_reverse);
             this.tabPage1.Controls.Add(this.checkBox_rudder_reverse);
             this.tabPage1.Controls.Add(this.label45);
@@ -1988,7 +2029,7 @@
             // labelMotorState
             // 
             this.labelMotorState.AutoSize = true;
-            this.labelMotorState.Location = new System.Drawing.Point(270, 90);
+            this.labelMotorState.Location = new System.Drawing.Point(286, 90);
             this.labelMotorState.Name = "labelMotorState";
             this.labelMotorState.Size = new System.Drawing.Size(77, 14);
             this.labelMotorState.TabIndex = 35;
@@ -3373,43 +3414,16 @@
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
             // 
-            // textBox3
+            // button3
             // 
-            this.textBox3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox3.Location = new System.Drawing.Point(318, 22);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(59, 23);
-            this.textBox3.TabIndex = 33;
-            this.textBox3.Text = "0";
-            // 
-            // label61
-            // 
-            this.label61.AutoSize = true;
-            this.label61.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label61.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label61.Location = new System.Drawing.Point(245, 25);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(67, 14);
-            this.label61.TabIndex = 34;
-            this.label61.Text = "火箭高度";
-            // 
-            // discharge1_state
-            // 
-            this.discharge1_state.AutoSize = true;
-            this.discharge1_state.Location = new System.Drawing.Point(15, 45);
-            this.discharge1_state.Name = "discharge1_state";
-            this.discharge1_state.Size = new System.Drawing.Size(56, 14);
-            this.discharge1_state.TabIndex = 60;
-            this.discharge1_state.Text = "label64";
-            // 
-            // discharge2_state
-            // 
-            this.discharge2_state.AutoSize = true;
-            this.discharge2_state.Location = new System.Drawing.Point(199, 45);
-            this.discharge2_state.Name = "discharge2_state";
-            this.discharge2_state.Size = new System.Drawing.Size(56, 14);
-            this.discharge2_state.TabIndex = 61;
-            this.discharge2_state.Text = "label64";
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button3.Location = new System.Drawing.Point(305, 307);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 46;
+            this.button3.Text = "启动推进器";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // FrmGCSMain
             // 
@@ -3772,6 +3786,7 @@
         private System.Windows.Forms.Label discharge1_state;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Button button3;
     }
 }
 

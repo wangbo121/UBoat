@@ -74,6 +74,14 @@ namespace BoatGCS
         public const byte GENERATOR_ON = 1;
         public const byte GENERATOR_OFF = 0;
 
+        public const byte PARAMETER_SET_MOTOR_DIRECTION = 13;//电机正反转
+        public const byte MOTOR_FORWARD = 0;
+        public const byte MOTOR_BACKWARD = 1;
+        public const byte MOTOR_OFF = 2;
+        public const byte MOTOR_ON = 3;
+
+
+
         
 
 
@@ -2373,6 +2381,15 @@ namespace BoatGCS
                 gbl_var.send_req_cnt++;
                 gbl_var.send_cmd_req = true;
             }
+
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_MOTOR_DIRECTION;
+            gcs2ap_parameter.value = MOTOR_BACKWARD;
+
+            gbl_var.send_req_cnt++;
+
         }
 
         private void btnBwd_Click(object sender, EventArgs e)
@@ -2384,6 +2401,15 @@ namespace BoatGCS
                 gbl_var.send_req_cnt++;
                 gbl_var.send_cmd_req = true;
             }
+
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_MOTOR_DIRECTION;
+            gcs2ap_parameter.value = MOTOR_FORWARD;
+
+            gbl_var.send_req_cnt++;
+
         }
 
         private void btnMotStop_Click(object sender, EventArgs e)
@@ -2395,6 +2421,14 @@ namespace BoatGCS
                 gbl_var.send_req_cnt++;
                 gbl_var.send_cmd_req = true;
             }
+
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_MOTOR_DIRECTION;
+            gcs2ap_parameter.value = MOTOR_OFF;
+
+            gbl_var.send_req_cnt++;
         }
 
         private void trBarTurnMotor_Scroll_1(object sender, EventArgs e)
@@ -2810,6 +2844,22 @@ namespace BoatGCS
             gbl_var.send_req_cnt++;
 
             //checkBox_discharge2.Checked = !checkBox_discharge2.Checked;
+        }
+
+        private void teBox_ap_lng_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_MOTOR_DIRECTION;
+            gcs2ap_parameter.value = MOTOR_ON;
+
+            gbl_var.send_req_cnt++;
         }
 
     }
