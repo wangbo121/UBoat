@@ -123,6 +123,7 @@
             this.label37 = new System.Windows.Forms.Label();
             this.teBox_ws_windspd = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.checkBox_throttle_reverse = new System.Windows.Forms.CheckBox();
             this.checkBox_rudder_reverse = new System.Windows.Forms.CheckBox();
             this.label45 = new System.Windows.Forms.Label();
@@ -318,7 +319,12 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
-            this.button3 = new System.Windows.Forms.Button();
+            this.left_motor_increase = new System.Windows.Forms.NumericUpDown();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label65 = new System.Windows.Forms.Label();
+            this.right_motor_increase = new System.Windows.Forms.NumericUpDown();
+            this.button_lanuch_rocket = new System.Windows.Forms.Button();
+            this.text_generator = new System.Windows.Forms.TextBox();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -350,6 +356,8 @@
             this.statusStrip1.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.contextMenuStripMap.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.left_motor_increase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.right_motor_increase)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -1329,6 +1337,11 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage1.Controls.Add(this.button_lanuch_rocket);
+            this.tabPage1.Controls.Add(this.label65);
+            this.tabPage1.Controls.Add(this.right_motor_increase);
+            this.tabPage1.Controls.Add(this.label64);
+            this.tabPage1.Controls.Add(this.left_motor_increase);
             this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.checkBox_throttle_reverse);
             this.tabPage1.Controls.Add(this.checkBox_rudder_reverse);
@@ -1352,6 +1365,17 @@
             this.tabPage1.Size = new System.Drawing.Size(434, 631);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "主控数据";
+            // 
+            // button3
+            // 
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button3.Location = new System.Drawing.Point(209, 302);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 46;
+            this.button3.Text = "启动推进器";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // checkBox_throttle_reverse
             // 
@@ -2100,6 +2124,7 @@
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox5.Controls.Add(this.text_generator);
             this.groupBox5.Controls.Add(this.button_generator_off);
             this.groupBox5.Controls.Add(this.button_generator_on);
             this.groupBox5.Controls.Add(this.textBox2);
@@ -3414,16 +3439,62 @@
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
             // 
-            // button3
+            // left_motor_increase
             // 
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(305, 307);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 46;
-            this.button3.Text = "启动推进器";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.left_motor_increase.Location = new System.Drawing.Point(356, 304);
+            this.left_motor_increase.Name = "left_motor_increase";
+            this.left_motor_increase.Size = new System.Drawing.Size(72, 21);
+            this.left_motor_increase.TabIndex = 62;
+            this.left_motor_increase.ValueChanged += new System.EventHandler(this.left_motor_increase_ValueChanged);
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label64.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label64.Location = new System.Drawing.Point(287, 305);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(63, 14);
+            this.label64.TabIndex = 47;
+            this.label64.Text = "左推进器";
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label65.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label65.Location = new System.Drawing.Point(287, 337);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(63, 14);
+            this.label65.TabIndex = 63;
+            this.label65.Text = "右推进器";
+            // 
+            // right_motor_increase
+            // 
+            this.right_motor_increase.Location = new System.Drawing.Point(356, 336);
+            this.right_motor_increase.Name = "right_motor_increase";
+            this.right_motor_increase.Size = new System.Drawing.Size(72, 21);
+            this.right_motor_increase.TabIndex = 64;
+            this.right_motor_increase.ValueChanged += new System.EventHandler(this.right_motor_increase_ValueChanged);
+            // 
+            // button_lanuch_rocket
+            // 
+            this.button_lanuch_rocket.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_lanuch_rocket.Location = new System.Drawing.Point(147, 516);
+            this.button_lanuch_rocket.Name = "button_lanuch_rocket";
+            this.button_lanuch_rocket.Size = new System.Drawing.Size(75, 39);
+            this.button_lanuch_rocket.TabIndex = 65;
+            this.button_lanuch_rocket.Text = "发射火箭";
+            this.button_lanuch_rocket.UseVisualStyleBackColor = true;
+            this.button_lanuch_rocket.Click += new System.EventHandler(this.button_lanuch_rocket_Click);
+            // 
+            // text_generator
+            // 
+            this.text_generator.Location = new System.Drawing.Point(245, 415);
+            this.text_generator.Name = "text_generator";
+            this.text_generator.Size = new System.Drawing.Size(47, 23);
+            this.text_generator.TabIndex = 88;
+            this.text_generator.Text = "关闭中";
             // 
             // FrmGCSMain
             // 
@@ -3490,6 +3561,8 @@
             this.statusStripMain.ResumeLayout(false);
             this.statusStripMain.PerformLayout();
             this.contextMenuStripMap.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.left_motor_increase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.right_motor_increase)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3787,6 +3860,12 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.NumericUpDown left_motor_increase;
+        private System.Windows.Forms.Label label64;
+        private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.NumericUpDown right_motor_increase;
+        private System.Windows.Forms.Button button_lanuch_rocket;
+        private System.Windows.Forms.TextBox text_generator;
     }
 }
 

@@ -80,6 +80,12 @@ namespace BoatGCS
         public const byte MOTOR_OFF = 2;
         public const byte MOTOR_ON = 3;
 
+        public const byte PARAMETER_SET_MOTOR_LEFT_INCREASE = 14;//左电机增加百分之x
+        public const byte PARAMETER_SET_MOTOR_RIGHT_INCREASE = 15;//右电机增加百分之x
+
+        public const byte PARAMETER_SET_ROCKET = 16;
+        public const byte PARAMETER_SET_ROCKET_LAUNCH = 1;
+
 
 
         
@@ -2030,6 +2036,14 @@ namespace BoatGCS
                 textBox_toggle_voltage0.Text = Convert.ToString(ap2gcs_real.spare3);
                 textBox_toggle_voltage1.Text = Convert.ToString(ap2gcs_real.spare4);
 
+                if (ap2gcs_real.spare2==0)
+                {
+                    text_generator.Text = "关闭中";
+                }
+                else{
+                    text_generator.Text = "发电中";
+                }
+
 
 
                 //右侧仪表和地图上文本数据显示
@@ -2860,6 +2874,40 @@ namespace BoatGCS
             gcs2ap_parameter.value = MOTOR_ON;
 
             gbl_var.send_req_cnt++;
+        }
+
+        private void left_motor_increase_ValueChanged(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_MOTOR_LEFT_INCREASE;
+            gcs2ap_parameter.value = Convert.ToByte(left_motor_increase.Value);
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void right_motor_increase_ValueChanged(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_MOTOR_RIGHT_INCREASE;
+            gcs2ap_parameter.value = Convert.ToByte(right_motor_increase.Value);
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_lanuch_rocket_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_ROCKET;
+            gcs2ap_parameter.value = PARAMETER_SET_ROCKET_LAUNCH;
+
+            gbl_var.send_req_cnt++;
+
         }
 
     }
