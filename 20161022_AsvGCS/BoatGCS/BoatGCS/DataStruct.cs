@@ -184,7 +184,8 @@ namespace BoatGCS
 
         public byte cte_p;//偏航距 的比例系数
         //wangbo
-        public byte reverse;
+        //public byte reverse;
+        public byte rud_d;//20161205 wangbo
        
     }
     /// <summary>

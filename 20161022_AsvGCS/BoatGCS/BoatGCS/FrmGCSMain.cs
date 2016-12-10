@@ -86,6 +86,11 @@ namespace BoatGCS
         public const byte PARAMETER_SET_ROCKET = 16;
         public const byte PARAMETER_SET_ROCKET_LAUNCH = 1;
 
+        public const byte PARAMETER_SET_CTE_I = 17;
+        public const byte PARAMETER_SET_CTE_D = 18;
+
+        public const byte PARAMETER_SET_THROTTLE_PERCENT_TIME = 19;
+
 
 
         
@@ -400,6 +405,8 @@ namespace BoatGCS
             //航点表中的0号航点为家坐标
             totalWPlist.Add(new PointLatLngAlt(homePos.Lat, homePos.Lng, 0.0, "H"));
             addpolygonmarker("H", homePos.Lat, homePos.Lng, 0.0, null);
+            //totalWPlist[0].color = Color.Pink;
+            //addpolygonmarker("H", homePos.Lat, homePos.Lng, 0.0, totalWPlist[0].color);
 
             //启动主定时器，定时间隔100ms
             main_timer.Enabled = true;
@@ -461,6 +468,7 @@ namespace BoatGCS
             gcs2ap_cmd.rud_pwm = 127;
             gcs2ap_cmd.rud_p = 1;
             gcs2ap_cmd.rud_i = 0;
+            gcs2ap_cmd.rud_d = 0;//20161205 wangbo
             gcs2ap_cmd.wpno = 0xff;//航点数据无效
             //系统启动时两个数据相同，后面通过对比来确定数据是否变化
             gcs2ap_cmd_new = gcs2ap_cmd;
@@ -1768,6 +1776,8 @@ namespace BoatGCS
 
             //摇杆给出的方向舵位置增益值
             teBoxTurnMotor.Text = Convert.ToString(trBarTurnMotor.Value);
+            textBoxSteerIntegral.Text = Convert.ToString(trBarTurnMotorIntegral.Value);
+            textBoxSteerDeviate.Text = Convert.ToString(trBarTurnMotorDeviate.Value);
             //AP反馈的方向舵位置增益值
             teBoxTurnMotorFb.Text = Convert.ToString(ap2gcs_real.rud_p);
 /*
@@ -1846,6 +1856,9 @@ namespace BoatGCS
                 gcs2ap_cmd_new.rud_p = Convert.ToByte(trBarTurnMotor.Value);
                 //wangbo
                 gcs2ap_cmd_new.rud_i = Convert.ToByte(trBarTurnMotorIntegral.Value);
+                gcs2ap_cmd_new.rud_d = Convert.ToByte(trBarTurnMotorDeviate.Value);
+
+
                 gcs2ap_cmd_new.cte_p = Convert.ToByte(trackBar_CTE_P.Value);
 
                 /*发送特定指定目标航点*/
@@ -2908,6 +2921,45 @@ namespace BoatGCS
 
             gbl_var.send_req_cnt++;
 
+        }
+
+        private void trBarTurnMotorDeviate_Scroll(object sender, EventArgs e)
+        {
+            textBoxSteerDeviate.Text = Convert.ToString(trBarTurnMotorDeviate.Value);
+        }
+
+        private void button_cte_I_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_CTE_I;
+            gcs2ap_parameter.value = Convert.ToByte(textBox_cte_I.Text);
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_cte_D_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_CTE_D;
+            gcs2ap_parameter.value = Convert.ToByte(textBox_cte_D.Text);
+
+            gbl_var.send_req_cnt++;
+
+        }
+
+        private void button_throttle_change_time_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_THROTTLE_PERCENT_TIME;
+            gcs2ap_parameter.value = Convert.ToByte(textBox_throttle_change_time.Text);
+
+            gbl_var.send_req_cnt++;
         }
 
     }

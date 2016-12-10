@@ -123,6 +123,11 @@
             this.label37 = new System.Windows.Forms.Label();
             this.teBox_ws_windspd = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button_lanuch_rocket = new System.Windows.Forms.Button();
+            this.label65 = new System.Windows.Forms.Label();
+            this.right_motor_increase = new System.Windows.Forms.NumericUpDown();
+            this.label64 = new System.Windows.Forms.Label();
+            this.left_motor_increase = new System.Windows.Forms.NumericUpDown();
             this.button3 = new System.Windows.Forms.Button();
             this.checkBox_throttle_reverse = new System.Windows.Forms.CheckBox();
             this.checkBox_rudder_reverse = new System.Windows.Forms.CheckBox();
@@ -163,6 +168,13 @@
             this.teBox_jsk_rudlmt = new System.Windows.Forms.TextBox();
             this.ckBoxSimu = new System.Windows.Forms.CheckBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.textBox_cte_D = new System.Windows.Forms.TextBox();
+            this.textBox_cte_I = new System.Windows.Forms.TextBox();
+            this.button_cte_D = new System.Windows.Forms.Button();
+            this.button_cte_I = new System.Windows.Forms.Button();
+            this.textBoxSteerDeviate = new System.Windows.Forms.TextBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.trBarTurnMotorDeviate = new System.Windows.Forms.TrackBar();
             this.label58 = new System.Windows.Forms.Label();
             this.label57 = new System.Windows.Forms.Label();
             this.textBoxCTE_P = new System.Windows.Forms.TextBox();
@@ -195,6 +207,7 @@
             this.btnSetHome = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.text_generator = new System.Windows.Forms.TextBox();
             this.button_generator_off = new System.Windows.Forms.Button();
             this.button_generator_on = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -319,12 +332,8 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
-            this.left_motor_increase = new System.Windows.Forms.NumericUpDown();
-            this.label64 = new System.Windows.Forms.Label();
-            this.label65 = new System.Windows.Forms.Label();
-            this.right_motor_increase = new System.Windows.Forms.NumericUpDown();
-            this.button_lanuch_rocket = new System.Windows.Forms.Button();
-            this.text_generator = new System.Windows.Forms.TextBox();
+            this.textBox_throttle_change_time = new System.Windows.Forms.TextBox();
+            this.button_throttle_change_time = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -334,8 +343,11 @@
             this.groupBox11.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.right_motor_increase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.left_motor_increase)).BeginInit();
             this.groupBox12.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trBarTurnMotorDeviate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_CTE_P)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trBarTurnMotorIntegral)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trBarTurnMotor)).BeginInit();
@@ -356,8 +368,6 @@
             this.statusStrip1.SuspendLayout();
             this.statusStripMain.SuspendLayout();
             this.contextMenuStripMap.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.left_motor_increase)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.right_motor_increase)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -554,7 +564,7 @@
             this.textBox_wp_cnt.Name = "textBox_wp_cnt";
             this.textBox_wp_cnt.Size = new System.Drawing.Size(100, 21);
             this.textBox_wp_cnt.TabIndex = 21;
-            this.textBox_wp_cnt.Text = "0";
+            this.textBox_wp_cnt.Text = "127";
             // 
             // get_wp_from_pilot
             // 
@@ -1366,6 +1376,55 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "主控数据";
             // 
+            // button_lanuch_rocket
+            // 
+            this.button_lanuch_rocket.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_lanuch_rocket.Location = new System.Drawing.Point(147, 516);
+            this.button_lanuch_rocket.Name = "button_lanuch_rocket";
+            this.button_lanuch_rocket.Size = new System.Drawing.Size(75, 39);
+            this.button_lanuch_rocket.TabIndex = 65;
+            this.button_lanuch_rocket.Text = "发射火箭";
+            this.button_lanuch_rocket.UseVisualStyleBackColor = true;
+            this.button_lanuch_rocket.Click += new System.EventHandler(this.button_lanuch_rocket_Click);
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label65.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label65.Location = new System.Drawing.Point(287, 337);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(63, 14);
+            this.label65.TabIndex = 63;
+            this.label65.Text = "右推进器";
+            // 
+            // right_motor_increase
+            // 
+            this.right_motor_increase.Location = new System.Drawing.Point(356, 336);
+            this.right_motor_increase.Name = "right_motor_increase";
+            this.right_motor_increase.Size = new System.Drawing.Size(72, 21);
+            this.right_motor_increase.TabIndex = 64;
+            this.right_motor_increase.ValueChanged += new System.EventHandler(this.right_motor_increase_ValueChanged);
+            // 
+            // label64
+            // 
+            this.label64.AutoSize = true;
+            this.label64.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label64.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label64.Location = new System.Drawing.Point(287, 305);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(63, 14);
+            this.label64.TabIndex = 47;
+            this.label64.Text = "左推进器";
+            // 
+            // left_motor_increase
+            // 
+            this.left_motor_increase.Location = new System.Drawing.Point(356, 304);
+            this.left_motor_increase.Name = "left_motor_increase";
+            this.left_motor_increase.Size = new System.Drawing.Size(72, 21);
+            this.left_motor_increase.TabIndex = 62;
+            this.left_motor_increase.ValueChanged += new System.EventHandler(this.left_motor_increase_ValueChanged);
+            // 
             // button3
             // 
             this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -1777,6 +1836,13 @@
             // groupBox10
             // 
             this.groupBox10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.groupBox10.Controls.Add(this.textBox_cte_D);
+            this.groupBox10.Controls.Add(this.textBox_cte_I);
+            this.groupBox10.Controls.Add(this.button_cte_D);
+            this.groupBox10.Controls.Add(this.button_cte_I);
+            this.groupBox10.Controls.Add(this.textBoxSteerDeviate);
+            this.groupBox10.Controls.Add(this.label66);
+            this.groupBox10.Controls.Add(this.trBarTurnMotorDeviate);
             this.groupBox10.Controls.Add(this.label58);
             this.groupBox10.Controls.Add(this.label57);
             this.groupBox10.Controls.Add(this.textBoxCTE_P);
@@ -1798,12 +1864,80 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "自驾参数";
             // 
+            // textBox_cte_D
+            // 
+            this.textBox_cte_D.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_cte_D.Location = new System.Drawing.Point(360, 131);
+            this.textBox_cte_D.Name = "textBox_cte_D";
+            this.textBox_cte_D.Size = new System.Drawing.Size(60, 23);
+            this.textBox_cte_D.TabIndex = 69;
+            this.textBox_cte_D.Text = "0";
+            // 
+            // textBox_cte_I
+            // 
+            this.textBox_cte_I.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_cte_I.Location = new System.Drawing.Point(360, 95);
+            this.textBox_cte_I.Name = "textBox_cte_I";
+            this.textBox_cte_I.Size = new System.Drawing.Size(60, 23);
+            this.textBox_cte_I.TabIndex = 68;
+            this.textBox_cte_I.Text = "0";
+            // 
+            // button_cte_D
+            // 
+            this.button_cte_D.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_cte_D.Location = new System.Drawing.Point(282, 131);
+            this.button_cte_D.Name = "button_cte_D";
+            this.button_cte_D.Size = new System.Drawing.Size(75, 23);
+            this.button_cte_D.TabIndex = 67;
+            this.button_cte_D.Text = "偏航D";
+            this.button_cte_D.UseVisualStyleBackColor = true;
+            this.button_cte_D.Click += new System.EventHandler(this.button_cte_D_Click);
+            // 
+            // button_cte_I
+            // 
+            this.button_cte_I.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_cte_I.Location = new System.Drawing.Point(283, 94);
+            this.button_cte_I.Name = "button_cte_I";
+            this.button_cte_I.Size = new System.Drawing.Size(75, 23);
+            this.button_cte_I.TabIndex = 66;
+            this.button_cte_I.Text = "偏航I";
+            this.button_cte_I.UseVisualStyleBackColor = true;
+            this.button_cte_I.Click += new System.EventHandler(this.button_cte_I_Click);
+            // 
+            // textBoxSteerDeviate
+            // 
+            this.textBoxSteerDeviate.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBoxSteerDeviate.Location = new System.Drawing.Point(215, 94);
+            this.textBoxSteerDeviate.Name = "textBoxSteerDeviate";
+            this.textBoxSteerDeviate.Size = new System.Drawing.Size(60, 23);
+            this.textBoxSteerDeviate.TabIndex = 49;
+            this.textBoxSteerDeviate.Text = "0";
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(3, 87);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(70, 14);
+            this.label66.TabIndex = 48;
+            this.label66.Text = "转向微分D";
+            // 
+            // trBarTurnMotorDeviate
+            // 
+            this.trBarTurnMotorDeviate.AutoSize = false;
+            this.trBarTurnMotorDeviate.Location = new System.Drawing.Point(76, 87);
+            this.trBarTurnMotorDeviate.Maximum = 100;
+            this.trBarTurnMotorDeviate.Name = "trBarTurnMotorDeviate";
+            this.trBarTurnMotorDeviate.Size = new System.Drawing.Size(130, 30);
+            this.trBarTurnMotorDeviate.TabIndex = 47;
+            this.trBarTurnMotorDeviate.Scroll += new System.EventHandler(this.trBarTurnMotorDeviate_Scroll);
+            // 
             // label58
             // 
             this.label58.AutoSize = true;
             this.label58.BackColor = System.Drawing.Color.Transparent;
             this.label58.ForeColor = System.Drawing.Color.Red;
-            this.label58.Location = new System.Drawing.Point(138, 14);
+            this.label58.Location = new System.Drawing.Point(290, 51);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(126, 14);
             this.label58.TabIndex = 46;
@@ -1812,7 +1946,7 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(291, 31);
+            this.label57.Location = new System.Drawing.Point(288, 25);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(70, 14);
             this.label57.TabIndex = 45;
@@ -1821,17 +1955,17 @@
             // textBoxCTE_P
             // 
             this.textBoxCTE_P.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBoxCTE_P.Location = new System.Drawing.Point(226, 122);
+            this.textBoxCTE_P.Location = new System.Drawing.Point(216, 135);
             this.textBoxCTE_P.Name = "textBoxCTE_P";
             this.textBoxCTE_P.Size = new System.Drawing.Size(60, 23);
             this.textBoxCTE_P.TabIndex = 44;
-            this.textBoxCTE_P.Text = "10";
+            this.textBoxCTE_P.Text = "0";
             this.textBoxCTE_P.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(6, 122);
+            this.label48.Location = new System.Drawing.Point(-2, 138);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(84, 14);
             this.label48.TabIndex = 43;
@@ -1840,27 +1974,26 @@
             // trackBar_CTE_P
             // 
             this.trackBar_CTE_P.AutoSize = false;
-            this.trackBar_CTE_P.Location = new System.Drawing.Point(89, 113);
+            this.trackBar_CTE_P.Location = new System.Drawing.Point(76, 131);
             this.trackBar_CTE_P.Maximum = 100;
             this.trackBar_CTE_P.Name = "trackBar_CTE_P";
             this.trackBar_CTE_P.Size = new System.Drawing.Size(130, 30);
             this.trackBar_CTE_P.TabIndex = 42;
-            this.trackBar_CTE_P.Value = 10;
             this.trackBar_CTE_P.Scroll += new System.EventHandler(this.trackBar_CTE_P_Scroll);
             // 
             // textBoxSteerIntegral
             // 
             this.textBoxSteerIntegral.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBoxSteerIntegral.Location = new System.Drawing.Point(226, 83);
+            this.textBoxSteerIntegral.Location = new System.Drawing.Point(215, 58);
             this.textBoxSteerIntegral.Name = "textBoxSteerIntegral";
             this.textBoxSteerIntegral.Size = new System.Drawing.Size(60, 23);
             this.textBoxSteerIntegral.TabIndex = 41;
-            this.textBoxSteerIntegral.Text = "10";
+            this.textBoxSteerIntegral.Text = "0";
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(6, 67);
+            this.label44.Location = new System.Drawing.Point(3, 51);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(70, 14);
             this.label44.TabIndex = 40;
@@ -1869,18 +2002,17 @@
             // trBarTurnMotorIntegral
             // 
             this.trBarTurnMotorIntegral.AutoSize = false;
-            this.trBarTurnMotorIntegral.Location = new System.Drawing.Point(90, 67);
+            this.trBarTurnMotorIntegral.Location = new System.Drawing.Point(76, 51);
             this.trBarTurnMotorIntegral.Maximum = 100;
             this.trBarTurnMotorIntegral.Name = "trBarTurnMotorIntegral";
             this.trBarTurnMotorIntegral.Size = new System.Drawing.Size(130, 30);
             this.trBarTurnMotorIntegral.TabIndex = 37;
-            this.trBarTurnMotorIntegral.Value = 10;
             this.trBarTurnMotorIntegral.Scroll += new System.EventHandler(this.trBarTurnMotorIntegral_Scroll);
             // 
             // teBoxTurnMotorFb
             // 
             this.teBoxTurnMotorFb.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBoxTurnMotorFb.Location = new System.Drawing.Point(364, 28);
+            this.teBoxTurnMotorFb.Location = new System.Drawing.Point(364, 22);
             this.teBoxTurnMotorFb.Name = "teBoxTurnMotorFb";
             this.teBoxTurnMotorFb.Size = new System.Drawing.Size(49, 23);
             this.teBoxTurnMotorFb.TabIndex = 38;
@@ -1889,7 +2021,7 @@
             // trBarTurnMotor
             // 
             this.trBarTurnMotor.AutoSize = false;
-            this.trBarTurnMotor.Location = new System.Drawing.Point(92, 31);
+            this.trBarTurnMotor.Location = new System.Drawing.Point(79, 15);
             this.trBarTurnMotor.Maximum = 100;
             this.trBarTurnMotor.Name = "trBarTurnMotor";
             this.trBarTurnMotor.Size = new System.Drawing.Size(130, 30);
@@ -1902,7 +2034,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label17.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label17.Location = new System.Drawing.Point(8, 31);
+            this.label17.Location = new System.Drawing.Point(3, 19);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(70, 14);
             this.label17.TabIndex = 34;
@@ -1911,7 +2043,7 @@
             // teBoxTurnMotor
             // 
             this.teBoxTurnMotor.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBoxTurnMotor.Location = new System.Drawing.Point(226, 31);
+            this.teBoxTurnMotor.Location = new System.Drawing.Point(215, 22);
             this.teBoxTurnMotor.Name = "teBoxTurnMotor";
             this.teBoxTurnMotor.Size = new System.Drawing.Size(60, 23);
             this.teBoxTurnMotor.TabIndex = 24;
@@ -2124,6 +2256,8 @@
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox5.Controls.Add(this.textBox_throttle_change_time);
+            this.groupBox5.Controls.Add(this.button_throttle_change_time);
             this.groupBox5.Controls.Add(this.text_generator);
             this.groupBox5.Controls.Add(this.button_generator_off);
             this.groupBox5.Controls.Add(this.button_generator_on);
@@ -2175,6 +2309,14 @@
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "通用参数设置";
+            // 
+            // text_generator
+            // 
+            this.text_generator.Location = new System.Drawing.Point(245, 415);
+            this.text_generator.Name = "text_generator";
+            this.text_generator.Size = new System.Drawing.Size(47, 23);
+            this.text_generator.TabIndex = 88;
+            this.text_generator.Text = "关闭中";
             // 
             // button_generator_off
             // 
@@ -3439,62 +3581,24 @@
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
             // 
-            // left_motor_increase
+            // textBox_throttle_change_time
             // 
-            this.left_motor_increase.Location = new System.Drawing.Point(356, 304);
-            this.left_motor_increase.Name = "left_motor_increase";
-            this.left_motor_increase.Size = new System.Drawing.Size(72, 21);
-            this.left_motor_increase.TabIndex = 62;
-            this.left_motor_increase.ValueChanged += new System.EventHandler(this.left_motor_increase_ValueChanged);
+            this.textBox_throttle_change_time.Location = new System.Drawing.Point(361, 24);
+            this.textBox_throttle_change_time.Name = "textBox_throttle_change_time";
+            this.textBox_throttle_change_time.Size = new System.Drawing.Size(39, 23);
+            this.textBox_throttle_change_time.TabIndex = 90;
+            this.textBox_throttle_change_time.Text = "0";
             // 
-            // label64
+            // button_throttle_change_time
             // 
-            this.label64.AutoSize = true;
-            this.label64.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label64.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label64.Location = new System.Drawing.Point(287, 305);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(63, 14);
-            this.label64.TabIndex = 47;
-            this.label64.Text = "左推进器";
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label65.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label65.Location = new System.Drawing.Point(287, 337);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(63, 14);
-            this.label65.TabIndex = 63;
-            this.label65.Text = "右推进器";
-            // 
-            // right_motor_increase
-            // 
-            this.right_motor_increase.Location = new System.Drawing.Point(356, 336);
-            this.right_motor_increase.Name = "right_motor_increase";
-            this.right_motor_increase.Size = new System.Drawing.Size(72, 21);
-            this.right_motor_increase.TabIndex = 64;
-            this.right_motor_increase.ValueChanged += new System.EventHandler(this.right_motor_increase_ValueChanged);
-            // 
-            // button_lanuch_rocket
-            // 
-            this.button_lanuch_rocket.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_lanuch_rocket.Location = new System.Drawing.Point(147, 516);
-            this.button_lanuch_rocket.Name = "button_lanuch_rocket";
-            this.button_lanuch_rocket.Size = new System.Drawing.Size(75, 39);
-            this.button_lanuch_rocket.TabIndex = 65;
-            this.button_lanuch_rocket.Text = "发射火箭";
-            this.button_lanuch_rocket.UseVisualStyleBackColor = true;
-            this.button_lanuch_rocket.Click += new System.EventHandler(this.button_lanuch_rocket_Click);
-            // 
-            // text_generator
-            // 
-            this.text_generator.Location = new System.Drawing.Point(245, 415);
-            this.text_generator.Name = "text_generator";
-            this.text_generator.Size = new System.Drawing.Size(47, 23);
-            this.text_generator.TabIndex = 88;
-            this.text_generator.Text = "关闭中";
+            this.button_throttle_change_time.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_throttle_change_time.Location = new System.Drawing.Point(255, 23);
+            this.button_throttle_change_time.Name = "button_throttle_change_time";
+            this.button_throttle_change_time.Size = new System.Drawing.Size(100, 23);
+            this.button_throttle_change_time.TabIndex = 89;
+            this.button_throttle_change_time.Text = "油门变化时间";
+            this.button_throttle_change_time.UseVisualStyleBackColor = true;
+            this.button_throttle_change_time.Click += new System.EventHandler(this.button_throttle_change_time_Click);
             // 
             // FrmGCSMain
             // 
@@ -3528,10 +3632,13 @@
             this.groupBox2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.right_motor_increase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.left_motor_increase)).EndInit();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trBarTurnMotorDeviate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar_CTE_P)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trBarTurnMotorIntegral)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trBarTurnMotor)).EndInit();
@@ -3561,8 +3668,6 @@
             this.statusStripMain.ResumeLayout(false);
             this.statusStripMain.PerformLayout();
             this.contextMenuStripMap.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.left_motor_increase)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.right_motor_increase)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3866,6 +3971,15 @@
         private System.Windows.Forms.NumericUpDown right_motor_increase;
         private System.Windows.Forms.Button button_lanuch_rocket;
         private System.Windows.Forms.TextBox text_generator;
+        private System.Windows.Forms.TextBox textBoxSteerDeviate;
+        private System.Windows.Forms.Label label66;
+        private System.Windows.Forms.TrackBar trBarTurnMotorDeviate;
+        private System.Windows.Forms.TextBox textBox_cte_D;
+        private System.Windows.Forms.TextBox textBox_cte_I;
+        private System.Windows.Forms.Button button_cte_D;
+        private System.Windows.Forms.Button button_cte_I;
+        private System.Windows.Forms.TextBox textBox_throttle_change_time;
+        private System.Windows.Forms.Button button_throttle_change_time;
     }
 }
 
