@@ -661,25 +661,35 @@ namespace BoatGCS
                                                 ap2gcs_real.mm_state = packbuf[29];//主推进电机状态
                                                 ap2gcs_real.rud_p = packbuf[30];//方向舵机控制P增益
                                                 ap2gcs_real.rud_i = packbuf[31];//方向舵机控制I增益
-                                                ap2gcs_real.spare1 = packbuf[32];//预留
+                                                ap2gcs_real.boat_temp0 = packbuf[32];//预留
                                                 ap2gcs_real.boat_temp1 = packbuf[33];//[度]，艇内1号点温度
                                                 ap2gcs_real.boat_temp2 = packbuf[34];//[度]，艇内2号点温度
-                                                ap2gcs_real.boat_humi = packbuf[35];//[%]，艇内湿度
+                                                ap2gcs_real.wp_load_cnt = packbuf[35];//[%]，艇内湿度
                                                 ap2gcs_real.wpno = packbuf[36];//下一航点编号，0xff表示是GCS发送的新航点
-                                                ap2gcs_real.spare2 = packbuf[37];
-                                                ap2gcs_real.spare3 = packbuf[38];
-                                                ap2gcs_real.spare4 = packbuf[39];
-                                                ap2gcs_real.spare5 = packbuf[40];
-                                                ap2gcs_real.spare6 = packbuf[41];
-                                                ap2gcs_real.spare7 = packbuf[42];
-                                                ap2gcs_real.spare8 = packbuf[43];
-                                                ap2gcs_real.spare9 = BitConverter.ToUInt32(packbuf, 44);
-                                                ap2gcs_real.spare10 = BitConverter.ToUInt32(packbuf, 48);
-                                                ap2gcs_real.spare11 = BitConverter.ToUInt32(packbuf, 52);
-                                                ap2gcs_real.spare12 = BitConverter.ToUInt32(packbuf, 56);
-                                                ap2gcs_real.spare13 = BitConverter.ToUInt32(packbuf, 60);
-                                                ap2gcs_real.spare14 = BitConverter.ToUInt32(packbuf, 64);
-                                                ap2gcs_real.spare15 = BitConverter.ToUInt32(packbuf, 68);
+
+                                                ap2gcs_real.generator_onoff_req = packbuf[37];
+                                                ap2gcs_real.voltage_bat1= packbuf[38];
+                                                ap2gcs_real.voltage_bat2 = packbuf[39];
+                                                ap2gcs_real.toggle_state= packbuf[40];
+                                                ap2gcs_real.charge_state= packbuf[41];
+                                                ap2gcs_real.temp= packbuf[42];
+                                                ap2gcs_real.humi = packbuf[43];
+                                                ap2gcs_real.windspeed = packbuf[44];
+                                                ap2gcs_real.winddir = packbuf[45];
+                                                ap2gcs_real.airpress = packbuf[46];
+                                                ap2gcs_real.seasault = packbuf[47];
+                                                ap2gcs_real.elec_cond = packbuf[48];
+                                                ap2gcs_real.seatemp1 = packbuf[49];
+                                                ap2gcs_real.launch_req_ack = packbuf[50];
+                                                ap2gcs_real.rocket_state= packbuf[51];
+                                                ap2gcs_real.rktnumber= packbuf[52];
+                                                ap2gcs_real.spare1 = packbuf[53];
+                                                ap2gcs_real.alt = BitConverter.ToInt16(packbuf,54 );
+                                                
+                                                ap2gcs_real.spare10 = BitConverter.ToUInt32(packbuf, 56);
+                                                ap2gcs_real.spare11 = BitConverter.ToUInt32(packbuf, 60);
+                                                ap2gcs_real.spare12 = BitConverter.ToUInt32(packbuf, 64);
+                                                ap2gcs_real.spare13 = BitConverter.ToUInt32(packbuf, 68);
 
                                             }
                                             else
@@ -703,23 +713,33 @@ namespace BoatGCS
                                                 ap2gcs_real.spare1 = packbuf[32];//预留
                                                 ap2gcs_real.boat_temp1 = packbuf[33];//[度]，艇内1号点温度
                                                 ap2gcs_real.boat_temp2 = packbuf[34];//[度]，艇内2号点温度
-                                                ap2gcs_real.boat_humi = packbuf[35];//[%]，艇内湿度
+                                                ap2gcs_real.wp_load_cnt = packbuf[35];//[%]，艇内湿度
                                                 ap2gcs_real.wpno = packbuf[36];//下一航点编号，0xff表示是GCS发送的新航点
-                                                ap2gcs_real.spare2 = packbuf[37];
-                                                ap2gcs_real.spare3 = packbuf[38];
-                                                ap2gcs_real.spare4 = packbuf[39];
-                                                ap2gcs_real.spare5 = packbuf[40];
-                                                ap2gcs_real.spare6 = packbuf[41];
-                                                ap2gcs_real.spare7 = packbuf[42];
-                                                ap2gcs_real.spare8 = packbuf[43];
 
-                                                ap2gcs_real.spare9 = BitConverter.ToUInt32(packbuf, 44);
-                                                ap2gcs_real.spare10 = BitConverter.ToUInt32(packbuf, 48);
-                                                ap2gcs_real.spare11 = BitConverter.ToUInt32(packbuf, 52);
-                                                ap2gcs_real.spare12 = BitConverter.ToUInt32(packbuf, 56);
-                                                ap2gcs_real.spare13 = BitConverter.ToUInt32(packbuf, 60);
-                                                ap2gcs_real.spare14 = BitConverter.ToUInt32(packbuf, 64);
-                                                ap2gcs_real.spare15 = BitConverter.ToUInt32(packbuf, 68);
+
+                                                ap2gcs_real.generator_onoff_req = packbuf[37];
+                                                ap2gcs_real.voltage_bat1 = packbuf[38];
+                                                ap2gcs_real.voltage_bat2 = packbuf[39];
+                                                ap2gcs_real.toggle_state = packbuf[40];
+                                                ap2gcs_real.charge_state = packbuf[41];
+                                                ap2gcs_real.temp = packbuf[42];
+                                                ap2gcs_real.humi = packbuf[43];
+                                                ap2gcs_real.windspeed = packbuf[44];
+                                                ap2gcs_real.winddir = packbuf[45];
+                                                ap2gcs_real.airpress = packbuf[46];
+                                                ap2gcs_real.seasault = packbuf[47];
+                                                ap2gcs_real.elec_cond = packbuf[48];
+                                                ap2gcs_real.seatemp1 = packbuf[49];
+                                                ap2gcs_real.launch_req_ack = packbuf[50];
+                                                ap2gcs_real.rocket_state = packbuf[51];
+                                                ap2gcs_real.rktnumber = packbuf[52];
+                                                ap2gcs_real.spare1 = packbuf[53];
+                                                ap2gcs_real.alt = BitConverter.ToInt16(packbuf, 54);
+
+                                                ap2gcs_real.spare10 = BitConverter.ToUInt32(packbuf, 56);
+                                                ap2gcs_real.spare11 = BitConverter.ToUInt32(packbuf, 60);
+                                                ap2gcs_real.spare12 = BitConverter.ToUInt32(packbuf, 64);
+                                                ap2gcs_real.spare13 = BitConverter.ToUInt32(packbuf, 68);
                                             }
 
 
@@ -2054,18 +2074,33 @@ namespace BoatGCS
                 teBox_ap_rud_i.Text = Convert.ToString(ap2gcs_real.rud_i);
                 teBox_inboat_t1.Text = Convert.ToString(ap2gcs_real.boat_temp1);
                 teBox_inboat_t2.Text = Convert.ToString(ap2gcs_real.boat_temp2);
-                teBox_inboat_humi.Text = Convert.ToString(ap2gcs_real.boat_humi);
+                teBox_wp_load_cnt.Text = Convert.ToString(ap2gcs_real.wp_load_cnt);
 
-                textBox_toggle_voltage0.Text = Convert.ToString(ap2gcs_real.spare3);
-                textBox_toggle_voltage1.Text = Convert.ToString(ap2gcs_real.spare4);
+                textBox_toggle_voltage0.Text = Convert.ToString(ap2gcs_real.voltage_bat1);
+                textBox_toggle_voltage1.Text = Convert.ToString(ap2gcs_real.voltage_bat2);
 
-                if (ap2gcs_real.spare2==0)
+                if (ap2gcs_real.generator_onoff_req==0)
                 {
                     text_generator.Text = "关闭中";
                 }
                 else{
                     text_generator.Text = "发电中";
                 }
+
+                teBox_ws_winddir.Text = Convert.ToString(ap2gcs_real.winddir);
+                teBox_ws_windspd.Text = Convert.ToString(ap2gcs_real.windspeed);
+                textBox_rocket_alt.Text = Convert.ToString(ap2gcs_real.alt);
+
+                /*气象站*/
+                teBox_ws_temp.Text = Convert.ToString(ap2gcs_real.temp);
+                teBox_ws_airpress.Text = Convert.ToString(ap2gcs_real.airpress);
+                teBox_ws_seatemp.Text = Convert.ToString(ap2gcs_real.seatemp1);
+                teBox_ws_humi.Text = Convert.ToString(ap2gcs_real.humi);
+
+                textBox_seasault.Text = Convert.ToString(ap2gcs_real.seasault);
+
+
+
 
 
 
@@ -2098,7 +2133,7 @@ namespace BoatGCS
                                           + "," + Convert.ToString(ap2gcs_real.rud_p) + "," + Convert.ToString(ap2gcs_real.rud_i)
                                           /*这里空了个spare1*/
                                           + "," + Convert.ToString(ap2gcs_real.boat_temp1) + "," + Convert.ToString(ap2gcs_real.boat_temp2)
-                                          + "," + Convert.ToString(ap2gcs_real.boat_humi)
+                                          + "," + Convert.ToString(ap2gcs_real.wp_load_cnt)
                                           + "," + Convert.ToString(ap2gcs_real.wpno)
                                           /*下面的不是实时数据包中的数据*/
                                           + "," + Convert.ToString(prBar_jsk_onoff.Value) + "," + Convert.ToString(prBar_jsk_bwdfwd.Value)
@@ -2114,7 +2149,7 @@ namespace BoatGCS
                 teBox_ws_lng.Text = Convert.ToString(ap2gcs_aws.lng * 0.00001);
                 teBox_ws_lat.Text = Convert.ToString(ap2gcs_aws.lat * 0.00001);
                 teBox_ws_temp.Text = Convert.ToString(ap2gcs_aws.temp * 0.01);
-                teBox_ws_dewtemp.Text = Convert.ToString(ap2gcs_aws.dewtemp * 0.01);
+                teBox_ws_seatemp.Text = Convert.ToString(ap2gcs_aws.dewtemp * 0.01);
                 teBox_ws_humi.Text = Convert.ToString(ap2gcs_aws.humi * 0.01);
                 teBox_ws_airpress.Text = Convert.ToString(ap2gcs_aws.airpress * 0.01);
                 teBox_ws_winddir.Text = Convert.ToString(ap2gcs_aws.winddir * 0.01);

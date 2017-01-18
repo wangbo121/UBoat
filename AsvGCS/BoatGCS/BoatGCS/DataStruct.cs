@@ -234,21 +234,35 @@ namespace BoatGCS
         public byte mm_state;//主推进电机状态
         public byte rud_p;//方向舵机控制P增益
         public byte rud_i;//方向舵机控制I增益
-        public byte spare1;//预留 可能用于pid的微分环节
+        public byte boat_temp0;//预留 可能用于pid的微分环节
         public byte boat_temp1;//[度]，艇内1号点温度
         public byte boat_temp2;//[度]，艇内2号点温度
-        public byte boat_humi;//[%]，艇内湿度
+        //public byte boat_humi;//[%]，艇内湿度
+        public byte wp_load_cnt;//[%]，艇内湿度
         public byte wpno;//下一航点编号，0xff表示是GCS发送的新航点
-        public byte spare2;
-        public byte spare3;
-        public byte spare4;
+        /*20161211改变下面几个实时数据*/
+        public byte generator_onoff_req;
+        public byte voltage_bat1;
+        public byte voltage_bat2;
 
-        public byte spare5;
-        public byte spare6;
-        public byte spare7;
-        public byte spare8;
+        /*s上面是40个字节*/
+        public byte toggle_state;
+        public byte charge_state;
+        public byte temp;
+        public byte humi;//湿度
+        public byte windspeed;
+        public byte winddir;
+        public byte airpress;
+        public byte seasault;
 
-        public UInt32 spare9;
+        public byte elec_cond;
+        public byte seatemp1;
+        public byte launch_req_ack;
+        public byte rocket_state;
+        public byte rktnumber;
+        public byte spare1;
+        public Int16 alt;
+    
         public UInt32 spare10;
         public UInt32 spare11;
         public UInt32 spare12;

@@ -85,7 +85,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.teBox_ap_spd = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.teBox_inboat_humi = new System.Windows.Forms.TextBox();
+            this.teBox_wp_load_cnt = new System.Windows.Forms.TextBox();
             this.label52 = new System.Windows.Forms.Label();
             this.teBox_inboat_t2 = new System.Windows.Forms.TextBox();
             this.label51 = new System.Windows.Forms.Label();
@@ -102,14 +102,12 @@
             this.teBox_ap_lng = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox_rocket_alt = new System.Windows.Forms.TextBox();
             this.label61 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.teBox_ws_dewtemp = new System.Windows.Forms.TextBox();
+            this.teBox_ws_seatemp = new System.Windows.Forms.TextBox();
             this.teBox_ws_lat = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.teBox_ws_time = new System.Windows.Forms.TextBox();
             this.teBox_ws_lng = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.teBox_ws_airpress = new System.Windows.Forms.TextBox();
@@ -207,6 +205,10 @@
             this.btnSetHome = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button_trajectory_navigation = new System.Windows.Forms.Button();
+            this.button_boat_head_navigation = new System.Windows.Forms.Button();
+            this.button_rudder_control = new System.Windows.Forms.Button();
+            this.button_differential_control = new System.Windows.Forms.Button();
             this.textBox_throttle_change_time = new System.Windows.Forms.TextBox();
             this.button_throttle_change_time = new System.Windows.Forms.Button();
             this.text_generator = new System.Windows.Forms.TextBox();
@@ -334,10 +336,8 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
-            this.button_differential_control = new System.Windows.Forms.Button();
-            this.button_rudder_control = new System.Windows.Forms.Button();
-            this.button_boat_head_navigation = new System.Windows.Forms.Button();
-            this.button_trajectory_navigation = new System.Windows.Forms.Button();
+            this.textBox_seasault = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -711,7 +711,7 @@
             this.groupBox11.Controls.Add(this.label15);
             this.groupBox11.Controls.Add(this.teBox_ap_spd);
             this.groupBox11.Controls.Add(this.label25);
-            this.groupBox11.Controls.Add(this.teBox_inboat_humi);
+            this.groupBox11.Controls.Add(this.teBox_wp_load_cnt);
             this.groupBox11.Controls.Add(this.label52);
             this.groupBox11.Controls.Add(this.teBox_inboat_t2);
             this.groupBox11.Controls.Add(this.label51);
@@ -956,14 +956,14 @@
             this.label25.TabIndex = 35;
             this.label25.Text = "航速(节)";
             // 
-            // teBox_inboat_humi
+            // teBox_wp_load_cnt
             // 
-            this.teBox_inboat_humi.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_inboat_humi.Location = new System.Drawing.Point(210, 227);
-            this.teBox_inboat_humi.Name = "teBox_inboat_humi";
-            this.teBox_inboat_humi.Size = new System.Drawing.Size(59, 23);
-            this.teBox_inboat_humi.TabIndex = 32;
-            this.teBox_inboat_humi.Text = "30.5";
+            this.teBox_wp_load_cnt.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.teBox_wp_load_cnt.Location = new System.Drawing.Point(210, 227);
+            this.teBox_wp_load_cnt.Name = "teBox_wp_load_cnt";
+            this.teBox_wp_load_cnt.Size = new System.Drawing.Size(59, 23);
+            this.teBox_wp_load_cnt.TabIndex = 32;
+            this.teBox_wp_load_cnt.Text = "30.5";
             // 
             // label52
             // 
@@ -1120,14 +1120,14 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.label61);
+            this.groupBox2.Controls.Add(this.textBox_seasault);
             this.groupBox2.Controls.Add(this.label18);
+            this.groupBox2.Controls.Add(this.textBox_rocket_alt);
+            this.groupBox2.Controls.Add(this.label61);
             this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.teBox_ws_dewtemp);
+            this.groupBox2.Controls.Add(this.teBox_ws_seatemp);
             this.groupBox2.Controls.Add(this.teBox_ws_lat);
             this.groupBox2.Controls.Add(this.label30);
-            this.groupBox2.Controls.Add(this.teBox_ws_time);
             this.groupBox2.Controls.Add(this.teBox_ws_lng);
             this.groupBox2.Controls.Add(this.label31);
             this.groupBox2.Controls.Add(this.teBox_ws_airpress);
@@ -1149,14 +1149,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "气象站-火箭";
             // 
-            // textBox3
+            // textBox_rocket_alt
             // 
-            this.textBox3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox3.Location = new System.Drawing.Point(318, 22);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(59, 23);
-            this.textBox3.TabIndex = 33;
-            this.textBox3.Text = "0";
+            this.textBox_rocket_alt.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_rocket_alt.Location = new System.Drawing.Point(318, 22);
+            this.textBox_rocket_alt.Name = "textBox_rocket_alt";
+            this.textBox_rocket_alt.Size = new System.Drawing.Size(59, 23);
+            this.textBox_rocket_alt.TabIndex = 33;
+            this.textBox_rocket_alt.Text = "0";
             // 
             // label61
             // 
@@ -1169,41 +1169,30 @@
             this.label61.TabIndex = 34;
             this.label61.Text = "火箭高度";
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label18.Location = new System.Drawing.Point(13, 67);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(37, 14);
-            this.label18.TabIndex = 32;
-            this.label18.Text = "时间";
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label19.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label19.Location = new System.Drawing.Point(125, 128);
+            this.label19.Location = new System.Drawing.Point(125, 96);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(37, 14);
             this.label19.TabIndex = 31;
-            this.label19.Text = "露温";
+            this.label19.Text = "海温";
             // 
-            // teBox_ws_dewtemp
+            // teBox_ws_seatemp
             // 
-            this.teBox_ws_dewtemp.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_ws_dewtemp.Location = new System.Drawing.Point(168, 122);
-            this.teBox_ws_dewtemp.Name = "teBox_ws_dewtemp";
-            this.teBox_ws_dewtemp.Size = new System.Drawing.Size(59, 23);
-            this.teBox_ws_dewtemp.TabIndex = 30;
-            this.teBox_ws_dewtemp.Text = "0";
+            this.teBox_ws_seatemp.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.teBox_ws_seatemp.Location = new System.Drawing.Point(168, 90);
+            this.teBox_ws_seatemp.Name = "teBox_ws_seatemp";
+            this.teBox_ws_seatemp.Size = new System.Drawing.Size(59, 23);
+            this.teBox_ws_seatemp.TabIndex = 30;
+            this.teBox_ws_seatemp.Text = "0";
             // 
             // teBox_ws_lat
             // 
             this.teBox_ws_lat.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_ws_lat.Location = new System.Drawing.Point(56, 122);
+            this.teBox_ws_lat.Location = new System.Drawing.Point(56, 90);
             this.teBox_ws_lat.Name = "teBox_ws_lat";
             this.teBox_ws_lat.Size = new System.Drawing.Size(59, 23);
             this.teBox_ws_lat.TabIndex = 24;
@@ -1214,24 +1203,16 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label30.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label30.Location = new System.Drawing.Point(13, 128);
+            this.label30.Location = new System.Drawing.Point(13, 96);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(37, 14);
             this.label30.TabIndex = 25;
             this.label30.Text = "纬度";
             // 
-            // teBox_ws_time
-            // 
-            this.teBox_ws_time.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_ws_time.Location = new System.Drawing.Point(56, 64);
-            this.teBox_ws_time.Name = "teBox_ws_time";
-            this.teBox_ws_time.Size = new System.Drawing.Size(59, 23);
-            this.teBox_ws_time.TabIndex = 28;
-            // 
             // teBox_ws_lng
             // 
             this.teBox_ws_lng.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_ws_lng.Location = new System.Drawing.Point(56, 93);
+            this.teBox_ws_lng.Location = new System.Drawing.Point(56, 61);
             this.teBox_ws_lng.Name = "teBox_ws_lng";
             this.teBox_ws_lng.Size = new System.Drawing.Size(59, 23);
             this.teBox_ws_lng.TabIndex = 22;
@@ -1242,7 +1223,7 @@
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label31.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label31.Location = new System.Drawing.Point(13, 99);
+            this.label31.Location = new System.Drawing.Point(13, 67);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(37, 14);
             this.label31.TabIndex = 23;
@@ -1251,7 +1232,7 @@
             // teBox_ws_airpress
             // 
             this.teBox_ws_airpress.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_ws_airpress.Location = new System.Drawing.Point(284, 122);
+            this.teBox_ws_airpress.Location = new System.Drawing.Point(277, 61);
             this.teBox_ws_airpress.Name = "teBox_ws_airpress";
             this.teBox_ws_airpress.Size = new System.Drawing.Size(59, 23);
             this.teBox_ws_airpress.TabIndex = 8;
@@ -1262,7 +1243,7 @@
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label38.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label38.Location = new System.Drawing.Point(241, 128);
+            this.label38.Location = new System.Drawing.Point(233, 64);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(37, 14);
             this.label38.TabIndex = 9;
@@ -1271,7 +1252,7 @@
             // teBox_ws_humi
             // 
             this.teBox_ws_humi.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_ws_humi.Location = new System.Drawing.Point(284, 93);
+            this.teBox_ws_humi.Location = new System.Drawing.Point(277, 90);
             this.teBox_ws_humi.Name = "teBox_ws_humi";
             this.teBox_ws_humi.Size = new System.Drawing.Size(59, 23);
             this.teBox_ws_humi.TabIndex = 6;
@@ -1291,7 +1272,7 @@
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label39.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label39.Location = new System.Drawing.Point(241, 99);
+            this.label39.Location = new System.Drawing.Point(233, 93);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(37, 14);
             this.label39.TabIndex = 7;
@@ -1300,7 +1281,7 @@
             // teBox_ws_temp
             // 
             this.teBox_ws_temp.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_ws_temp.Location = new System.Drawing.Point(168, 93);
+            this.teBox_ws_temp.Location = new System.Drawing.Point(168, 61);
             this.teBox_ws_temp.Name = "teBox_ws_temp";
             this.teBox_ws_temp.Size = new System.Drawing.Size(59, 23);
             this.teBox_ws_temp.TabIndex = 4;
@@ -1322,7 +1303,7 @@
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label40.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label40.Location = new System.Drawing.Point(125, 99);
+            this.label40.Location = new System.Drawing.Point(125, 67);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(37, 14);
             this.label40.TabIndex = 5;
@@ -2317,6 +2298,50 @@
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "通用参数设置";
+            // 
+            // button_trajectory_navigation
+            // 
+            this.button_trajectory_navigation.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_trajectory_navigation.Location = new System.Drawing.Point(255, 140);
+            this.button_trajectory_navigation.Name = "button_trajectory_navigation";
+            this.button_trajectory_navigation.Size = new System.Drawing.Size(100, 23);
+            this.button_trajectory_navigation.TabIndex = 94;
+            this.button_trajectory_navigation.Text = "航迹导航";
+            this.button_trajectory_navigation.UseVisualStyleBackColor = true;
+            this.button_trajectory_navigation.Click += new System.EventHandler(this.button_trajectory_navigation_Click);
+            // 
+            // button_boat_head_navigation
+            // 
+            this.button_boat_head_navigation.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_boat_head_navigation.Location = new System.Drawing.Point(255, 111);
+            this.button_boat_head_navigation.Name = "button_boat_head_navigation";
+            this.button_boat_head_navigation.Size = new System.Drawing.Size(100, 23);
+            this.button_boat_head_navigation.TabIndex = 93;
+            this.button_boat_head_navigation.Text = "船头导航";
+            this.button_boat_head_navigation.UseVisualStyleBackColor = true;
+            this.button_boat_head_navigation.Click += new System.EventHandler(this.button_boat_head_navigation_Click);
+            // 
+            // button_rudder_control
+            // 
+            this.button_rudder_control.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_rudder_control.Location = new System.Drawing.Point(255, 53);
+            this.button_rudder_control.Name = "button_rudder_control";
+            this.button_rudder_control.Size = new System.Drawing.Size(100, 23);
+            this.button_rudder_control.TabIndex = 92;
+            this.button_rudder_control.Text = "舵控制方向";
+            this.button_rudder_control.UseVisualStyleBackColor = true;
+            this.button_rudder_control.Click += new System.EventHandler(this.button_rudder_control_Click);
+            // 
+            // button_differential_control
+            // 
+            this.button_differential_control.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_differential_control.Location = new System.Drawing.Point(255, 82);
+            this.button_differential_control.Name = "button_differential_control";
+            this.button_differential_control.Size = new System.Drawing.Size(100, 23);
+            this.button_differential_control.TabIndex = 91;
+            this.button_differential_control.Text = "差速控制方向";
+            this.button_differential_control.UseVisualStyleBackColor = true;
+            this.button_differential_control.Click += new System.EventHandler(this.button_differential_control_Click);
             // 
             // textBox_throttle_change_time
             // 
@@ -3608,49 +3633,25 @@
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
             // 
-            // button_differential_control
+            // textBox_seasault
             // 
-            this.button_differential_control.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_differential_control.Location = new System.Drawing.Point(255, 82);
-            this.button_differential_control.Name = "button_differential_control";
-            this.button_differential_control.Size = new System.Drawing.Size(100, 23);
-            this.button_differential_control.TabIndex = 91;
-            this.button_differential_control.Text = "差速控制方向";
-            this.button_differential_control.UseVisualStyleBackColor = true;
-            this.button_differential_control.Click += new System.EventHandler(this.button_differential_control_Click);
+            this.textBox_seasault.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_seasault.Location = new System.Drawing.Point(56, 131);
+            this.textBox_seasault.Name = "textBox_seasault";
+            this.textBox_seasault.Size = new System.Drawing.Size(59, 23);
+            this.textBox_seasault.TabIndex = 35;
+            this.textBox_seasault.Text = "0";
             // 
-            // button_rudder_control
+            // label18
             // 
-            this.button_rudder_control.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_rudder_control.Location = new System.Drawing.Point(255, 53);
-            this.button_rudder_control.Name = "button_rudder_control";
-            this.button_rudder_control.Size = new System.Drawing.Size(100, 23);
-            this.button_rudder_control.TabIndex = 92;
-            this.button_rudder_control.Text = "舵控制方向";
-            this.button_rudder_control.UseVisualStyleBackColor = true;
-            this.button_rudder_control.Click += new System.EventHandler(this.button_rudder_control_Click);
-            // 
-            // button_boat_head_navigation
-            // 
-            this.button_boat_head_navigation.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_boat_head_navigation.Location = new System.Drawing.Point(255, 111);
-            this.button_boat_head_navigation.Name = "button_boat_head_navigation";
-            this.button_boat_head_navigation.Size = new System.Drawing.Size(100, 23);
-            this.button_boat_head_navigation.TabIndex = 93;
-            this.button_boat_head_navigation.Text = "船头导航";
-            this.button_boat_head_navigation.UseVisualStyleBackColor = true;
-            this.button_boat_head_navigation.Click += new System.EventHandler(this.button_boat_head_navigation_Click);
-            // 
-            // button_trajectory_navigation
-            // 
-            this.button_trajectory_navigation.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_trajectory_navigation.Location = new System.Drawing.Point(255, 140);
-            this.button_trajectory_navigation.Name = "button_trajectory_navigation";
-            this.button_trajectory_navigation.Size = new System.Drawing.Size(100, 23);
-            this.button_trajectory_navigation.TabIndex = 94;
-            this.button_trajectory_navigation.Text = "航迹导航";
-            this.button_trajectory_navigation.UseVisualStyleBackColor = true;
-            this.button_trajectory_navigation.Click += new System.EventHandler(this.button_trajectory_navigation_Click);
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label18.Location = new System.Drawing.Point(12, 134);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(37, 14);
+            this.label18.TabIndex = 36;
+            this.label18.Text = "海盐";
             // 
             // FrmGCSMain
             // 
@@ -3784,8 +3785,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox teBox_ws_dewtemp;
-        private System.Windows.Forms.TextBox teBox_ws_time;
+        private System.Windows.Forms.TextBox teBox_ws_seatemp;
         private System.Windows.Forms.TextBox teBox_ws_lat;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TextBox teBox_ws_lng;
@@ -3851,13 +3851,12 @@
         private System.Windows.Forms.Button btnManuMode;
         private System.Windows.Forms.Panel panelTest;
         private System.Windows.Forms.Button btnTestMode;
-        private System.Windows.Forms.TextBox teBox_inboat_humi;
+        private System.Windows.Forms.TextBox teBox_wp_load_cnt;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.TextBox teBox_inboat_t2;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.TextBox teBox_inboat_t1;
         private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox teBox_ap_spd;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label labelMotorState;
@@ -4014,7 +4013,7 @@
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.Label discharge2_state;
         private System.Windows.Forms.Label discharge1_state;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox_rocket_alt;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.NumericUpDown left_motor_increase;
@@ -4036,6 +4035,8 @@
         private System.Windows.Forms.Button button_differential_control;
         private System.Windows.Forms.Button button_trajectory_navigation;
         private System.Windows.Forms.Button button_boat_head_navigation;
+        private System.Windows.Forms.TextBox textBox_seasault;
+        private System.Windows.Forms.Label label18;
     }
 }
 
