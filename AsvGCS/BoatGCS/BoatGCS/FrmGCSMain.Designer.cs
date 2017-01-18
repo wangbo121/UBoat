@@ -102,6 +102,8 @@
             this.teBox_ap_lng = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBox_seasault = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.textBox_rocket_alt = new System.Windows.Forms.TextBox();
             this.label61 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -254,6 +256,23 @@
             this.textBox_get_throttle = new System.Windows.Forms.TextBox();
             this.textBox_set_throttle = new System.Windows.Forms.TextBox();
             this.button_set_throttle = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.button_charge_start_on = new System.Windows.Forms.Button();
+            this.textBox_charge_current = new System.Windows.Forms.TextBox();
+            this.button_set_charge_current = new System.Windows.Forms.Button();
+            this.textBox_charge_voltage = new System.Windows.Forms.TextBox();
+            this.button_set_charge_voltage = new System.Windows.Forms.Button();
+            this.textBox_charge_channel = new System.Windows.Forms.TextBox();
+            this.button_set_charge_channel = new System.Windows.Forms.Button();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.button_switch_start_on = new System.Windows.Forms.Button();
+            this.textBox_switch_high = new System.Windows.Forms.TextBox();
+            this.button_set_switch_high = new System.Windows.Forms.Button();
+            this.textBox_switch_low = new System.Windows.Forms.TextBox();
+            this.button_set_switch_low = new System.Windows.Forms.Button();
+            this.textBox_switch_channel = new System.Windows.Forms.TextBox();
+            this.button_set_switch_channel = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.cbxBoxHomeCity = new System.Windows.Forms.ComboBox();
@@ -336,8 +355,7 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
-            this.textBox_seasault = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.button_charge_turn_off = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -358,6 +376,9 @@
             this.groupBox9.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -516,6 +537,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -1148,6 +1170,26 @@
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "气象站-火箭";
+            // 
+            // textBox_seasault
+            // 
+            this.textBox_seasault.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_seasault.Location = new System.Drawing.Point(56, 131);
+            this.textBox_seasault.Name = "textBox_seasault";
+            this.textBox_seasault.Size = new System.Drawing.Size(59, 23);
+            this.textBox_seasault.TabIndex = 35;
+            this.textBox_seasault.Text = "0";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label18.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label18.Location = new System.Drawing.Point(12, 134);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(37, 14);
+            this.label18.TabIndex = 36;
+            this.label18.Text = "海盐";
             // 
             // textBox_rocket_alt
             // 
@@ -2236,7 +2278,7 @@
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(434, 631);
             this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "参数设置";
+            this.tabPage4.Text = "主控参数";
             // 
             // groupBox5
             // 
@@ -2783,6 +2825,190 @@
             this.button_set_throttle.Text = "设置巡航油门";
             this.button_set_throttle.UseVisualStyleBackColor = true;
             this.button_set_throttle.Click += new System.EventHandler(this.button_set_throttle_Click);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.BackColor = System.Drawing.Color.Black;
+            this.tabPage5.Controls.Add(this.groupBox8);
+            this.tabPage5.Controls.Add(this.groupBox6);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(434, 631);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "副控参数";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.button_charge_turn_off);
+            this.groupBox8.Controls.Add(this.button_charge_start_on);
+            this.groupBox8.Controls.Add(this.textBox_charge_current);
+            this.groupBox8.Controls.Add(this.button_set_charge_current);
+            this.groupBox8.Controls.Add(this.textBox_charge_voltage);
+            this.groupBox8.Controls.Add(this.button_set_charge_voltage);
+            this.groupBox8.Controls.Add(this.textBox_charge_channel);
+            this.groupBox8.Controls.Add(this.button_set_charge_channel);
+            this.groupBox8.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.groupBox8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox8.Location = new System.Drawing.Point(8, 181);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(422, 148);
+            this.groupBox8.TabIndex = 1;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "充电机";
+            // 
+            // button_charge_start_on
+            // 
+            this.button_charge_start_on.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_charge_start_on.Location = new System.Drawing.Point(16, 80);
+            this.button_charge_start_on.Name = "button_charge_start_on";
+            this.button_charge_start_on.Size = new System.Drawing.Size(75, 23);
+            this.button_charge_start_on.TabIndex = 13;
+            this.button_charge_start_on.Text = "开始充电";
+            this.button_charge_start_on.UseVisualStyleBackColor = true;
+            this.button_charge_start_on.Click += new System.EventHandler(this.button_charge_start_on_Click);
+            // 
+            // textBox_charge_current
+            // 
+            this.textBox_charge_current.Location = new System.Drawing.Point(257, 53);
+            this.textBox_charge_current.Name = "textBox_charge_current";
+            this.textBox_charge_current.Size = new System.Drawing.Size(28, 23);
+            this.textBox_charge_current.TabIndex = 12;
+            this.textBox_charge_current.Text = "10";
+            // 
+            // button_set_charge_current
+            // 
+            this.button_set_charge_current.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_set_charge_current.Location = new System.Drawing.Point(165, 52);
+            this.button_set_charge_current.Name = "button_set_charge_current";
+            this.button_set_charge_current.Size = new System.Drawing.Size(75, 23);
+            this.button_set_charge_current.TabIndex = 11;
+            this.button_set_charge_current.Text = "设置电流";
+            this.button_set_charge_current.UseVisualStyleBackColor = true;
+            this.button_set_charge_current.Click += new System.EventHandler(this.button_set_charge_current_Click);
+            // 
+            // textBox_charge_voltage
+            // 
+            this.textBox_charge_voltage.Location = new System.Drawing.Point(108, 52);
+            this.textBox_charge_voltage.Name = "textBox_charge_voltage";
+            this.textBox_charge_voltage.Size = new System.Drawing.Size(28, 23);
+            this.textBox_charge_voltage.TabIndex = 10;
+            this.textBox_charge_voltage.Text = "130";
+            // 
+            // button_set_charge_voltage
+            // 
+            this.button_set_charge_voltage.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_set_charge_voltage.Location = new System.Drawing.Point(16, 51);
+            this.button_set_charge_voltage.Name = "button_set_charge_voltage";
+            this.button_set_charge_voltage.Size = new System.Drawing.Size(75, 23);
+            this.button_set_charge_voltage.TabIndex = 9;
+            this.button_set_charge_voltage.Text = "设置电压";
+            this.button_set_charge_voltage.UseVisualStyleBackColor = true;
+            this.button_set_charge_voltage.Click += new System.EventHandler(this.button_set_charge_voltage_Click);
+            // 
+            // textBox_charge_channel
+            // 
+            this.textBox_charge_channel.Location = new System.Drawing.Point(108, 23);
+            this.textBox_charge_channel.Name = "textBox_charge_channel";
+            this.textBox_charge_channel.Size = new System.Drawing.Size(28, 23);
+            this.textBox_charge_channel.TabIndex = 8;
+            this.textBox_charge_channel.Text = "1";
+            // 
+            // button_set_charge_channel
+            // 
+            this.button_set_charge_channel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_set_charge_channel.Location = new System.Drawing.Point(16, 22);
+            this.button_set_charge_channel.Name = "button_set_charge_channel";
+            this.button_set_charge_channel.Size = new System.Drawing.Size(75, 23);
+            this.button_set_charge_channel.TabIndex = 7;
+            this.button_set_charge_channel.Text = "设置通道";
+            this.button_set_charge_channel.UseVisualStyleBackColor = true;
+            this.button_set_charge_channel.Click += new System.EventHandler(this.button_set_charge_channel_Click);
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.button_switch_start_on);
+            this.groupBox6.Controls.Add(this.textBox_switch_high);
+            this.groupBox6.Controls.Add(this.button_set_switch_high);
+            this.groupBox6.Controls.Add(this.textBox_switch_low);
+            this.groupBox6.Controls.Add(this.button_set_switch_low);
+            this.groupBox6.Controls.Add(this.textBox_switch_channel);
+            this.groupBox6.Controls.Add(this.button_set_switch_channel);
+            this.groupBox6.Font = new System.Drawing.Font("宋体", 10.5F);
+            this.groupBox6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox6.Location = new System.Drawing.Point(8, 13);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(422, 162);
+            this.groupBox6.TabIndex = 0;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "切换器";
+            // 
+            // button_switch_start_on
+            // 
+            this.button_switch_start_on.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_switch_start_on.Location = new System.Drawing.Point(16, 81);
+            this.button_switch_start_on.Name = "button_switch_start_on";
+            this.button_switch_start_on.Size = new System.Drawing.Size(75, 23);
+            this.button_switch_start_on.TabIndex = 6;
+            this.button_switch_start_on.Text = "开始切换";
+            this.button_switch_start_on.UseVisualStyleBackColor = true;
+            this.button_switch_start_on.Click += new System.EventHandler(this.button_switch_start_on_Click);
+            // 
+            // textBox_switch_high
+            // 
+            this.textBox_switch_high.Location = new System.Drawing.Point(257, 54);
+            this.textBox_switch_high.Name = "textBox_switch_high";
+            this.textBox_switch_high.Size = new System.Drawing.Size(28, 23);
+            this.textBox_switch_high.TabIndex = 5;
+            this.textBox_switch_high.Text = "130";
+            // 
+            // button_set_switch_high
+            // 
+            this.button_set_switch_high.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_set_switch_high.Location = new System.Drawing.Point(165, 53);
+            this.button_set_switch_high.Name = "button_set_switch_high";
+            this.button_set_switch_high.Size = new System.Drawing.Size(75, 23);
+            this.button_set_switch_high.TabIndex = 4;
+            this.button_set_switch_high.Text = "设置上限";
+            this.button_set_switch_high.UseVisualStyleBackColor = true;
+            this.button_set_switch_high.Click += new System.EventHandler(this.button_set_switch_high_Click);
+            // 
+            // textBox_switch_low
+            // 
+            this.textBox_switch_low.Location = new System.Drawing.Point(108, 53);
+            this.textBox_switch_low.Name = "textBox_switch_low";
+            this.textBox_switch_low.Size = new System.Drawing.Size(28, 23);
+            this.textBox_switch_low.TabIndex = 3;
+            this.textBox_switch_low.Text = "110";
+            // 
+            // button_set_switch_low
+            // 
+            this.button_set_switch_low.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_set_switch_low.Location = new System.Drawing.Point(16, 52);
+            this.button_set_switch_low.Name = "button_set_switch_low";
+            this.button_set_switch_low.Size = new System.Drawing.Size(75, 23);
+            this.button_set_switch_low.TabIndex = 2;
+            this.button_set_switch_low.Text = "设置下限";
+            this.button_set_switch_low.UseVisualStyleBackColor = true;
+            this.button_set_switch_low.Click += new System.EventHandler(this.button_set_switch_low_Click);
+            // 
+            // textBox_switch_channel
+            // 
+            this.textBox_switch_channel.Location = new System.Drawing.Point(108, 24);
+            this.textBox_switch_channel.Name = "textBox_switch_channel";
+            this.textBox_switch_channel.Size = new System.Drawing.Size(28, 23);
+            this.textBox_switch_channel.TabIndex = 1;
+            this.textBox_switch_channel.Text = "1";
+            // 
+            // button_set_switch_channel
+            // 
+            this.button_set_switch_channel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_set_switch_channel.Location = new System.Drawing.Point(16, 23);
+            this.button_set_switch_channel.Name = "button_set_switch_channel";
+            this.button_set_switch_channel.Size = new System.Drawing.Size(75, 23);
+            this.button_set_switch_channel.TabIndex = 0;
+            this.button_set_switch_channel.Text = "设置通道";
+            this.button_set_switch_channel.UseVisualStyleBackColor = true;
+            this.button_set_switch_channel.Click += new System.EventHandler(this.button_set_switch_channel_Click);
             // 
             // tabPage3
             // 
@@ -3633,25 +3859,16 @@
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
             // 
-            // textBox_seasault
+            // button_charge_turn_off
             // 
-            this.textBox_seasault.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBox_seasault.Location = new System.Drawing.Point(56, 131);
-            this.textBox_seasault.Name = "textBox_seasault";
-            this.textBox_seasault.Size = new System.Drawing.Size(59, 23);
-            this.textBox_seasault.TabIndex = 35;
-            this.textBox_seasault.Text = "0";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label18.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.label18.Location = new System.Drawing.Point(12, 134);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(37, 14);
-            this.label18.TabIndex = 36;
-            this.label18.Text = "海盐";
+            this.button_charge_turn_off.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_charge_turn_off.Location = new System.Drawing.Point(108, 81);
+            this.button_charge_turn_off.Name = "button_charge_turn_off";
+            this.button_charge_turn_off.Size = new System.Drawing.Size(75, 23);
+            this.button_charge_turn_off.TabIndex = 14;
+            this.button_charge_turn_off.Text = "停止充电";
+            this.button_charge_turn_off.UseVisualStyleBackColor = true;
+            this.button_charge_turn_off.Click += new System.EventHandler(this.button_charge_turn_off_Click);
             // 
             // FrmGCSMain
             // 
@@ -3700,6 +3917,11 @@
             this.tabPage4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -4037,6 +4259,24 @@
         private System.Windows.Forms.Button button_boat_head_navigation;
         private System.Windows.Forms.TextBox textBox_seasault;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Button button_charge_start_on;
+        private System.Windows.Forms.TextBox textBox_charge_current;
+        private System.Windows.Forms.Button button_set_charge_current;
+        private System.Windows.Forms.TextBox textBox_charge_voltage;
+        private System.Windows.Forms.Button button_set_charge_voltage;
+        private System.Windows.Forms.TextBox textBox_charge_channel;
+        private System.Windows.Forms.Button button_set_charge_channel;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button button_switch_start_on;
+        private System.Windows.Forms.TextBox textBox_switch_high;
+        private System.Windows.Forms.Button button_set_switch_high;
+        private System.Windows.Forms.TextBox textBox_switch_low;
+        private System.Windows.Forms.Button button_set_switch_low;
+        private System.Windows.Forms.TextBox textBox_switch_channel;
+        private System.Windows.Forms.Button button_set_switch_channel;
+        private System.Windows.Forms.Button button_charge_turn_off;
     }
 }
 

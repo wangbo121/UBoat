@@ -99,6 +99,18 @@ namespace BoatGCS
         public const byte BOAT_HEAD_NAVIGATION = 0;
         public const byte TRAJECTORY_NAVIGATION = 1;
 
+        public const byte PARAMETER_SET_SWITCH_CHANNEL = 22;
+        public const byte PARAMETER_SET_SWITCH_LOW_LIMIT = 23;
+        public const byte PARAMETER_SET_SWITCH_HIGH_LIMIT = 24;
+        public const byte PARAMETER_SET_SWITCH_START_ON = 25;
+
+        public const byte PARAMETER_SET_CHARGE_CHANNEL = 26;
+        public const byte PARAMETER_SET_CHARGE_VOLTAGE = 27;
+        public const byte PARAMETER_SET_CHARGE_CURRENT = 28;
+        public const byte PARAMETER_SET_CHARGE_START_ON = 29;
+        public const byte PARAMETER_SET_CHARGE_TURN_ON = 1;
+        public const byte PARAMETER_SET_CHARGE_TURN_OFF = 0;
+
         
 
 
@@ -3052,6 +3064,105 @@ namespace BoatGCS
 
             gcs2ap_parameter.type = PARAMETER_SET_USE_TRAJECTORY_NAVIGATION;
             gcs2ap_parameter.value = TRAJECTORY_NAVIGATION;
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_set_switch_channel_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_SWITCH_CHANNEL;
+            gcs2ap_parameter.value = Convert.ToByte(textBox_switch_channel.Text);
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_set_switch_low_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_SWITCH_LOW_LIMIT;
+            gcs2ap_parameter.value = Convert.ToByte(textBox_switch_low.Text);
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_set_switch_high_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_SWITCH_HIGH_LIMIT;
+            gcs2ap_parameter.value = Convert.ToByte(textBox_switch_high.Text);
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_switch_start_on_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_SWITCH_START_ON;
+            //gcs2ap_parameter.value = Convert.ToByte(textBox_switch_high.Text);
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_set_charge_channel_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_CHARGE_CHANNEL;
+            gcs2ap_parameter.value = Convert.ToByte(textBox_charge_channel.Text);
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_set_charge_voltage_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_CHARGE_VOLTAGE;
+            gcs2ap_parameter.value = Convert.ToByte(textBox_charge_voltage.Text);
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_set_charge_current_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_CHARGE_CURRENT;
+            gcs2ap_parameter.value = Convert.ToByte(textBox_charge_current.Text);
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_charge_start_on_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_CHARGE_START_ON;
+            gcs2ap_parameter.value = PARAMETER_SET_CHARGE_TURN_ON;
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_charge_turn_off_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_CHARGE_START_ON;
+            gcs2ap_parameter.value = PARAMETER_SET_CHARGE_TURN_OFF;
 
             gbl_var.send_req_cnt++;
         }
