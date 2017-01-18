@@ -56,8 +56,6 @@
             this.txtBox_parameter = new System.Windows.Forms.TextBox();
             this.cmbBox_parameter = new System.Windows.Forms.ComboBox();
             this.intermediate_value = new System.Windows.Forms.GroupBox();
-            this.discharge2_state = new System.Windows.Forms.Label();
-            this.discharge1_state = new System.Windows.Forms.Label();
             this.textBox_toggle_voltage1 = new System.Windows.Forms.TextBox();
             this.label63 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
@@ -635,8 +633,6 @@
             // 
             // intermediate_value
             // 
-            this.intermediate_value.Controls.Add(this.discharge2_state);
-            this.intermediate_value.Controls.Add(this.discharge1_state);
             this.intermediate_value.Controls.Add(this.textBox_toggle_voltage1);
             this.intermediate_value.Controls.Add(this.label63);
             this.intermediate_value.Controls.Add(this.label62);
@@ -645,28 +641,10 @@
             this.intermediate_value.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.intermediate_value.Location = new System.Drawing.Point(8, 358);
             this.intermediate_value.Name = "intermediate_value";
-            this.intermediate_value.Size = new System.Drawing.Size(414, 89);
+            this.intermediate_value.Size = new System.Drawing.Size(414, 51);
             this.intermediate_value.TabIndex = 16;
             this.intermediate_value.TabStop = false;
             this.intermediate_value.Text = "切换器";
-            // 
-            // discharge2_state
-            // 
-            this.discharge2_state.AutoSize = true;
-            this.discharge2_state.Location = new System.Drawing.Point(199, 45);
-            this.discharge2_state.Name = "discharge2_state";
-            this.discharge2_state.Size = new System.Drawing.Size(56, 14);
-            this.discharge2_state.TabIndex = 61;
-            this.discharge2_state.Text = "label64";
-            // 
-            // discharge1_state
-            // 
-            this.discharge1_state.AutoSize = true;
-            this.discharge1_state.Location = new System.Drawing.Point(15, 45);
-            this.discharge1_state.Name = "discharge1_state";
-            this.discharge1_state.Size = new System.Drawing.Size(56, 14);
-            this.discharge1_state.TabIndex = 60;
-            this.discharge1_state.Text = "label64";
             // 
             // textBox_toggle_voltage1
             // 
@@ -4233,8 +4211,6 @@
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.TextBox textBox_toggle_voltage0;
         private System.Windows.Forms.Label label62;
-        private System.Windows.Forms.Label discharge2_state;
-        private System.Windows.Forms.Label discharge1_state;
         private System.Windows.Forms.TextBox textBox_rocket_alt;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Button button3;

@@ -309,4 +309,14 @@ namespace BoatGCS
         public byte checksum;
         public byte state;
     }
+
+    /// <summary>
+    /// 北斗数据从地面站发送给自驾仪的包
+    /// </summary>
+    public struct BD_GCS2AP
+    {
+        public byte msgid;
+        public byte cnt;
+        public char[] data;
+    }
 }
