@@ -3062,6 +3062,7 @@
             this.btnPortBRefresh.TabIndex = 45;
             this.btnPortBRefresh.Text = "刷新";
             this.btnPortBRefresh.UseVisualStyleBackColor = true;
+            this.btnPortBRefresh.Click += new System.EventHandler(this.btnPortBRefresh_Click);
             // 
             // btnPortBOpenClose
             // 
@@ -3072,6 +3073,7 @@
             this.btnPortBOpenClose.TabIndex = 43;
             this.btnPortBOpenClose.Text = "打开";
             this.btnPortBOpenClose.UseVisualStyleBackColor = true;
+            this.btnPortBOpenClose.Click += new System.EventHandler(this.btnPortBOpenClose_Click);
             // 
             // cbxBBaudRate
             // 
