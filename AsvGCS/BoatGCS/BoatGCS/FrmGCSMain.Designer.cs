@@ -256,6 +256,7 @@
             this.button_set_throttle = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.button_charge_turn_off = new System.Windows.Forms.Button();
             this.button_charge_start_on = new System.Windows.Forms.Button();
             this.textBox_charge_current = new System.Windows.Forms.TextBox();
             this.button_set_charge_current = new System.Windows.Forms.Button();
@@ -353,7 +354,7 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
-            this.button_charge_turn_off = new System.Windows.Forms.Button();
+            this.button_rocket_close = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -1352,6 +1353,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage1.Controls.Add(this.button_rocket_close);
             this.tabPage1.Controls.Add(this.button_lanuch_rocket);
             this.tabPage1.Controls.Add(this.label65);
             this.tabPage1.Controls.Add(this.right_motor_increase);
@@ -2834,6 +2836,17 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "充电机";
             // 
+            // button_charge_turn_off
+            // 
+            this.button_charge_turn_off.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_charge_turn_off.Location = new System.Drawing.Point(108, 81);
+            this.button_charge_turn_off.Name = "button_charge_turn_off";
+            this.button_charge_turn_off.Size = new System.Drawing.Size(75, 23);
+            this.button_charge_turn_off.TabIndex = 14;
+            this.button_charge_turn_off.Text = "停止充电";
+            this.button_charge_turn_off.UseVisualStyleBackColor = true;
+            this.button_charge_turn_off.Click += new System.EventHandler(this.button_charge_turn_off_Click);
+            // 
             // button_charge_start_on
             // 
             this.button_charge_start_on.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -3839,16 +3852,15 @@
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
             // 
-            // button_charge_turn_off
+            // button_rocket_close
             // 
-            this.button_charge_turn_off.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_charge_turn_off.Location = new System.Drawing.Point(108, 81);
-            this.button_charge_turn_off.Name = "button_charge_turn_off";
-            this.button_charge_turn_off.Size = new System.Drawing.Size(75, 23);
-            this.button_charge_turn_off.TabIndex = 14;
-            this.button_charge_turn_off.Text = "停止充电";
-            this.button_charge_turn_off.UseVisualStyleBackColor = true;
-            this.button_charge_turn_off.Click += new System.EventHandler(this.button_charge_turn_off_Click);
+            this.button_rocket_close.Location = new System.Drawing.Point(228, 518);
+            this.button_rocket_close.Name = "button_rocket_close";
+            this.button_rocket_close.Size = new System.Drawing.Size(92, 37);
+            this.button_rocket_close.TabIndex = 66;
+            this.button_rocket_close.Text = "关闭火箭";
+            this.button_rocket_close.UseVisualStyleBackColor = true;
+            this.button_rocket_close.Click += new System.EventHandler(this.button_rocket_close_Click);
             // 
             // FrmGCSMain
             // 
@@ -4255,6 +4267,7 @@
         private System.Windows.Forms.TextBox textBox_switch_channel;
         private System.Windows.Forms.Button button_set_switch_channel;
         private System.Windows.Forms.Button button_charge_turn_off;
+        private System.Windows.Forms.Button button_rocket_close;
     }
 }
 

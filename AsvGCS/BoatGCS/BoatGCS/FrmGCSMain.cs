@@ -84,6 +84,7 @@ namespace BoatGCS
         public const byte PARAMETER_SET_MOTOR_RIGHT_INCREASE = 15;//右电机增加百分之x
 
         public const byte PARAMETER_SET_ROCKET = 16;
+        public const byte PARAMETER_SET_ROCKET_CLOSE = 0;
         public const byte PARAMETER_SET_ROCKET_LAUNCH = 1;
 
         public const byte PARAMETER_SET_CTE_I = 17;
@@ -1263,7 +1264,7 @@ namespace BoatGCS
                                                                 recv_tmp2 = BitConverter.ToUInt32(packbuf, 4);//[度*0.00001]
                                                                 if ((recv_tmp1 < 1000000) || (recv_tmp2 < 1000000))//取消通信错误数据
                                                                 {
-                                                                    ap2gcs_real.boat_temp2 = packbuf[26];
+                                                                    ap2gcs_real.boat_temp2 = packbuf[26];//先把主电机启停舵机PWM显示在温度2中 测试能不能收到北斗数据
                                                                     if (switch2beidou_data==1)
                                                                     {
                                                                         //also display when no GPS position ...FEIQING20161023
@@ -3989,6 +3990,17 @@ namespace BoatGCS
                     cbxBCOMPort.Text = "None";
                 }
             }
+        }
+
+        private void button_rocket_close_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_ROCKET;
+            gcs2ap_parameter.value = PARAMETER_SET_ROCKET_CLOSE;
+
+            gbl_var.send_req_cnt++;
         }
 
     }
