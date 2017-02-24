@@ -121,12 +121,12 @@
             this.label37 = new System.Windows.Forms.Label();
             this.teBox_ws_windspd = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button_rocket_close = new System.Windows.Forms.Button();
             this.button_lanuch_rocket = new System.Windows.Forms.Button();
             this.label65 = new System.Windows.Forms.Label();
             this.right_motor_increase = new System.Windows.Forms.NumericUpDown();
             this.label64 = new System.Windows.Forms.Label();
             this.left_motor_increase = new System.Windows.Forms.NumericUpDown();
-            this.button3 = new System.Windows.Forms.Button();
             this.checkBox_throttle_reverse = new System.Windows.Forms.CheckBox();
             this.checkBox_rudder_reverse = new System.Windows.Forms.CheckBox();
             this.label45 = new System.Windows.Forms.Label();
@@ -192,8 +192,8 @@
             this.btnMotStop = new System.Windows.Forms.Button();
             this.btnBwd = new System.Windows.Forms.Button();
             this.btnFwd = new System.Windows.Forms.Button();
-            this.teBox_fb_bf_pwm = new System.Windows.Forms.TextBox();
             this.teBox_jsk_throttle2 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.prBar_jsk_throttle2 = new System.Windows.Forms.ProgressBar();
             this.teBox_jsk_yaw2 = new System.Windows.Forms.TextBox();
             this.prBar_jsk_yaw2 = new System.Windows.Forms.ProgressBar();
@@ -354,7 +354,6 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
-            this.button_rocket_close = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -1359,7 +1358,6 @@
             this.tabPage1.Controls.Add(this.right_motor_increase);
             this.tabPage1.Controls.Add(this.label64);
             this.tabPage1.Controls.Add(this.left_motor_increase);
-            this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.checkBox_throttle_reverse);
             this.tabPage1.Controls.Add(this.checkBox_rudder_reverse);
             this.tabPage1.Controls.Add(this.label45);
@@ -1382,6 +1380,16 @@
             this.tabPage1.Size = new System.Drawing.Size(434, 631);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "主控数据";
+            // 
+            // button_rocket_close
+            // 
+            this.button_rocket_close.Location = new System.Drawing.Point(228, 518);
+            this.button_rocket_close.Name = "button_rocket_close";
+            this.button_rocket_close.Size = new System.Drawing.Size(92, 37);
+            this.button_rocket_close.TabIndex = 66;
+            this.button_rocket_close.Text = "关闭火箭";
+            this.button_rocket_close.UseVisualStyleBackColor = true;
+            this.button_rocket_close.Click += new System.EventHandler(this.button_rocket_close_Click);
             // 
             // button_lanuch_rocket
             // 
@@ -1431,17 +1439,6 @@
             this.left_motor_increase.Size = new System.Drawing.Size(72, 21);
             this.left_motor_increase.TabIndex = 62;
             this.left_motor_increase.ValueChanged += new System.EventHandler(this.left_motor_increase_ValueChanged);
-            // 
-            // button3
-            // 
-            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button3.Location = new System.Drawing.Point(209, 302);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 46;
-            this.button3.Text = "启动推进器";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // checkBox_throttle_reverse
             // 
@@ -2075,8 +2072,8 @@
             this.groupBox9.Controls.Add(this.btnMotStop);
             this.groupBox9.Controls.Add(this.btnBwd);
             this.groupBox9.Controls.Add(this.btnFwd);
-            this.groupBox9.Controls.Add(this.teBox_fb_bf_pwm);
             this.groupBox9.Controls.Add(this.teBox_jsk_throttle2);
+            this.groupBox9.Controls.Add(this.button3);
             this.groupBox9.Controls.Add(this.prBar_jsk_throttle2);
             this.groupBox9.Controls.Add(this.teBox_jsk_yaw2);
             this.groupBox9.Controls.Add(this.prBar_jsk_yaw2);
@@ -2099,18 +2096,18 @@
             this.label60.AutoSize = true;
             this.label60.Location = new System.Drawing.Point(225, 60);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(91, 14);
+            this.label60.Size = new System.Drawing.Size(77, 14);
             this.label60.TabIndex = 45;
-            this.label60.Text = "自驾返回方向";
+            this.label60.Text = "实时方向舵";
             // 
             // label59
             // 
             this.label59.AutoSize = true;
             this.label59.Location = new System.Drawing.Point(225, 32);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(91, 14);
+            this.label59.Size = new System.Drawing.Size(77, 14);
             this.label59.TabIndex = 44;
-            this.label59.Text = "自驾返回油门";
+            this.label59.Text = "实时启停舵";
             // 
             // btnMotStop
             // 
@@ -2145,15 +2142,6 @@
             this.btnFwd.UseVisualStyleBackColor = true;
             this.btnFwd.Click += new System.EventHandler(this.btnFwd_Click);
             // 
-            // teBox_fb_bf_pwm
-            // 
-            this.teBox_fb_bf_pwm.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_fb_bf_pwm.Location = new System.Drawing.Point(364, 81);
-            this.teBox_fb_bf_pwm.Name = "teBox_fb_bf_pwm";
-            this.teBox_fb_bf_pwm.Size = new System.Drawing.Size(49, 23);
-            this.teBox_fb_bf_pwm.TabIndex = 40;
-            this.teBox_fb_bf_pwm.Text = "0";
-            // 
             // teBox_jsk_throttle2
             // 
             this.teBox_jsk_throttle2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -2162,6 +2150,17 @@
             this.teBox_jsk_throttle2.Size = new System.Drawing.Size(59, 23);
             this.teBox_jsk_throttle2.TabIndex = 39;
             this.teBox_jsk_throttle2.Text = "0";
+            // 
+            // button3
+            // 
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button3.Location = new System.Drawing.Point(341, 86);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 46;
+            this.button3.Text = "启动推进器";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // prBar_jsk_throttle2
             // 
@@ -2192,7 +2191,7 @@
             // labelMotorState
             // 
             this.labelMotorState.AutoSize = true;
-            this.labelMotorState.Location = new System.Drawing.Point(286, 90);
+            this.labelMotorState.Location = new System.Drawing.Point(262, 90);
             this.labelMotorState.Name = "labelMotorState";
             this.labelMotorState.Size = new System.Drawing.Size(77, 14);
             this.labelMotorState.TabIndex = 35;
@@ -2223,7 +2222,7 @@
             // teBox_fb_oo_pwm
             // 
             this.teBox_fb_oo_pwm.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_fb_oo_pwm.Location = new System.Drawing.Point(318, 28);
+            this.teBox_fb_oo_pwm.Location = new System.Drawing.Point(308, 28);
             this.teBox_fb_oo_pwm.Name = "teBox_fb_oo_pwm";
             this.teBox_fb_oo_pwm.Size = new System.Drawing.Size(49, 23);
             this.teBox_fb_oo_pwm.TabIndex = 24;
@@ -2232,7 +2231,7 @@
             // teBox_fb_yaw_pwm
             // 
             this.teBox_fb_yaw_pwm.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_fb_yaw_pwm.Location = new System.Drawing.Point(319, 57);
+            this.teBox_fb_yaw_pwm.Location = new System.Drawing.Point(308, 60);
             this.teBox_fb_yaw_pwm.Name = "teBox_fb_yaw_pwm";
             this.teBox_fb_yaw_pwm.Size = new System.Drawing.Size(49, 23);
             this.teBox_fb_yaw_pwm.TabIndex = 22;
@@ -3555,7 +3554,8 @@
             // 
             // panelInstruments1
             // 
-            this.panelInstruments1.Location = new System.Drawing.Point(3, 495);
+            this.panelInstruments1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.panelInstruments1.Location = new System.Drawing.Point(212, 491);
             this.panelInstruments1.Name = "panelInstruments1";
             this.panelInstruments1.Size = new System.Drawing.Size(498, 167);
             this.panelInstruments1.TabIndex = 22;
@@ -3852,16 +3852,6 @@
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
             // 
-            // button_rocket_close
-            // 
-            this.button_rocket_close.Location = new System.Drawing.Point(228, 518);
-            this.button_rocket_close.Name = "button_rocket_close";
-            this.button_rocket_close.Size = new System.Drawing.Size(92, 37);
-            this.button_rocket_close.TabIndex = 66;
-            this.button_rocket_close.Text = "关闭火箭";
-            this.button_rocket_close.UseVisualStyleBackColor = true;
-            this.button_rocket_close.Click += new System.EventHandler(this.button_rocket_close_Click);
-            // 
             // FrmGCSMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4078,7 +4068,6 @@
         private System.Windows.Forms.ProgressBar prBar_jsk_yaw2;
         private System.Windows.Forms.TextBox teBox_jsk_throttle2;
         private System.Windows.Forms.ProgressBar prBar_jsk_throttle2;
-        private System.Windows.Forms.TextBox teBox_fb_bf_pwm;
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.TextBox teBox_jsk_rudmid;
         private System.Windows.Forms.Button btnRudMid;

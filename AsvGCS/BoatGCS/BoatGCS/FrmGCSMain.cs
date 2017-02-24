@@ -2572,10 +2572,12 @@ namespace BoatGCS
             //teBox_jsk_yaw2.Text = Convert.ToString(_throttle);
 
             //AP反馈的舵机当前位置值
+            /*
             teBox_fb_oo_pwm.Text = Convert.ToString(ap2gcs_real.moo_pwm);
             teBox_fb_bf_pwm.Text = Convert.ToString(ap2gcs_real.mbf_pwm);
             teBox_fb_yaw_pwm.Text = Convert.ToString(ap2gcs_real.rud_pwm);
-
+            */
+            
             //摇杆给出的方向舵位置增益值
             teBoxTurnMotor.Text = Convert.ToString(trBarTurnMotor.Value);
             textBoxSteerIntegral.Text = Convert.ToString(trBarTurnMotorIntegral.Value);
@@ -2850,6 +2852,10 @@ namespace BoatGCS
 
                 textBox_toggle_voltage0.Text = Convert.ToString(ap2gcs_real.voltage_bat1);
                 textBox_toggle_voltage1.Text = Convert.ToString(ap2gcs_real.voltage_bat2);
+
+                teBox_fb_oo_pwm.Text = Convert.ToString(ap2gcs_real.moo_pwm);
+                //teBox_fb_bf_pwm.Text = Convert.ToString(ap2gcs_real.mbf_pwm);
+                teBox_fb_yaw_pwm.Text = Convert.ToString(ap2gcs_real.rud_pwm);
 
                 if (ap2gcs_real.generator_onoff_req==0)
                 {
