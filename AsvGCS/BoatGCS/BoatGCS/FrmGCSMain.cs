@@ -2839,7 +2839,8 @@ namespace BoatGCS
                 teBox_ap_dir_heading.Text = Convert.ToString(ap2gcs_real.dir_heading * 0.01);
                 teBox_ap_dir_target.Text = Convert.ToString(ap2gcs_real.dir_target * 0.01);
                 teBox_ap_dir_nav.Text = Convert.ToString(ap2gcs_real.dir_nav * 0.01);
-                teBox_ap_spd.Text = Convert.ToString(ap2gcs_real.spd * 0.01);
+                //teBox_ap_spd.Text = Convert.ToString(ap2gcs_real.spd * 0.01);
+                teBox_ap_spd.Text = Convert.ToString(ap2gcs_real.spd * 0.01*1.944);
                 teBox_ap_nextwp.Text = Convert.ToString(ap2gcs_real.wpno);
                 teBox_ap_moo.Text = Convert.ToString(ap2gcs_real.moo_pwm);
                 teBox_ap_mbf.Text = Convert.ToString(ap2gcs_real.mbf_pwm);
