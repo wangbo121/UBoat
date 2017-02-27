@@ -48,6 +48,10 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox_beidou_lattitude = new System.Windows.Forms.TextBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.textBox_beidou_longitude = new System.Windows.Forms.TextBox();
+            this.label69 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.textBox_all_wp_num = new System.Windows.Forms.TextBox();
             this.textBox_wp_cnt = new System.Windows.Forms.TextBox();
@@ -187,6 +191,8 @@
             this.teBoxTurnMotor = new System.Windows.Forms.TextBox();
             this.btnReturn = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.textBox_feedbck_speed = new System.Windows.Forms.TextBox();
+            this.label67 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
             this.btnMotStop = new System.Windows.Forms.Button();
@@ -354,6 +360,7 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
+            this.button_mix_both_control = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -547,6 +554,10 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabPage2.Controls.Add(this.textBox_beidou_lattitude);
+            this.tabPage2.Controls.Add(this.label68);
+            this.tabPage2.Controls.Add(this.textBox_beidou_longitude);
+            this.tabPage2.Controls.Add(this.label69);
             this.tabPage2.Controls.Add(this.label49);
             this.tabPage2.Controls.Add(this.textBox_all_wp_num);
             this.tabPage2.Controls.Add(this.textBox_wp_cnt);
@@ -563,6 +574,46 @@
             this.tabPage2.Size = new System.Drawing.Size(434, 631);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "监测数据";
+            // 
+            // textBox_beidou_lattitude
+            // 
+            this.textBox_beidou_lattitude.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_beidou_lattitude.Location = new System.Drawing.Point(318, 421);
+            this.textBox_beidou_lattitude.Name = "textBox_beidou_lattitude";
+            this.textBox_beidou_lattitude.Size = new System.Drawing.Size(104, 23);
+            this.textBox_beidou_lattitude.TabIndex = 26;
+            this.textBox_beidou_lattitude.Text = "0";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label68.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label68.Location = new System.Drawing.Point(221, 424);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(98, 14);
+            this.label68.TabIndex = 27;
+            this.label68.Text = "北斗纬度(度)";
+            // 
+            // textBox_beidou_longitude
+            // 
+            this.textBox_beidou_longitude.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_beidou_longitude.Location = new System.Drawing.Point(103, 421);
+            this.textBox_beidou_longitude.Name = "textBox_beidou_longitude";
+            this.textBox_beidou_longitude.Size = new System.Drawing.Size(104, 23);
+            this.textBox_beidou_longitude.TabIndex = 24;
+            this.textBox_beidou_longitude.Text = "0";
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label69.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.label69.Location = new System.Drawing.Point(9, 424);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(98, 14);
+            this.label69.TabIndex = 25;
+            this.label69.Text = "北斗经度(度)";
             // 
             // label49
             // 
@@ -1385,7 +1436,7 @@
             // 
             this.button_rocket_close.Location = new System.Drawing.Point(228, 518);
             this.button_rocket_close.Name = "button_rocket_close";
-            this.button_rocket_close.Size = new System.Drawing.Size(92, 37);
+            this.button_rocket_close.Size = new System.Drawing.Size(83, 37);
             this.button_rocket_close.TabIndex = 66;
             this.button_rocket_close.Text = "关闭火箭";
             this.button_rocket_close.UseVisualStyleBackColor = true;
@@ -1394,9 +1445,9 @@
             // button_lanuch_rocket
             // 
             this.button_lanuch_rocket.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_lanuch_rocket.Location = new System.Drawing.Point(147, 516);
+            this.button_lanuch_rocket.Location = new System.Drawing.Point(147, 518);
             this.button_lanuch_rocket.Name = "button_lanuch_rocket";
-            this.button_lanuch_rocket.Size = new System.Drawing.Size(75, 39);
+            this.button_lanuch_rocket.Size = new System.Drawing.Size(79, 37);
             this.button_lanuch_rocket.TabIndex = 65;
             this.button_lanuch_rocket.Text = "发射火箭";
             this.button_lanuch_rocket.UseVisualStyleBackColor = true;
@@ -2067,6 +2118,8 @@
             // groupBox9
             // 
             this.groupBox9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.groupBox9.Controls.Add(this.textBox_feedbck_speed);
+            this.groupBox9.Controls.Add(this.label67);
             this.groupBox9.Controls.Add(this.label60);
             this.groupBox9.Controls.Add(this.label59);
             this.groupBox9.Controls.Add(this.btnMotStop);
@@ -2091,23 +2144,41 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "手动遥控";
             // 
+            // textBox_feedbck_speed
+            // 
+            this.textBox_feedbck_speed.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox_feedbck_speed.Location = new System.Drawing.Point(362, 29);
+            this.textBox_feedbck_speed.Name = "textBox_feedbck_speed";
+            this.textBox_feedbck_speed.Size = new System.Drawing.Size(49, 23);
+            this.textBox_feedbck_speed.TabIndex = 48;
+            this.textBox_feedbck_speed.Text = "0";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(328, 32);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(35, 14);
+            this.label67.TabIndex = 47;
+            this.label67.Text = "速度";
+            // 
             // label60
             // 
             this.label60.AutoSize = true;
             this.label60.Location = new System.Drawing.Point(225, 60);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(77, 14);
+            this.label60.Size = new System.Drawing.Size(49, 14);
             this.label60.TabIndex = 45;
-            this.label60.Text = "实时方向舵";
+            this.label60.Text = "方向舵";
             // 
             // label59
             // 
             this.label59.AutoSize = true;
             this.label59.Location = new System.Drawing.Point(225, 32);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(77, 14);
+            this.label59.Size = new System.Drawing.Size(49, 14);
             this.label59.TabIndex = 44;
-            this.label59.Text = "实时启停舵";
+            this.label59.Text = "启停舵";
             // 
             // btnMotStop
             // 
@@ -2222,7 +2293,7 @@
             // teBox_fb_oo_pwm
             // 
             this.teBox_fb_oo_pwm.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_fb_oo_pwm.Location = new System.Drawing.Point(308, 28);
+            this.teBox_fb_oo_pwm.Location = new System.Drawing.Point(279, 28);
             this.teBox_fb_oo_pwm.Name = "teBox_fb_oo_pwm";
             this.teBox_fb_oo_pwm.Size = new System.Drawing.Size(49, 23);
             this.teBox_fb_oo_pwm.TabIndex = 24;
@@ -2231,7 +2302,7 @@
             // teBox_fb_yaw_pwm
             // 
             this.teBox_fb_yaw_pwm.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.teBox_fb_yaw_pwm.Location = new System.Drawing.Point(308, 60);
+            this.teBox_fb_yaw_pwm.Location = new System.Drawing.Point(279, 57);
             this.teBox_fb_yaw_pwm.Name = "teBox_fb_yaw_pwm";
             this.teBox_fb_yaw_pwm.Size = new System.Drawing.Size(49, 23);
             this.teBox_fb_yaw_pwm.TabIndex = 22;
@@ -2262,6 +2333,7 @@
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox5.Controls.Add(this.button_mix_both_control);
             this.groupBox5.Controls.Add(this.button_trajectory_navigation);
             this.groupBox5.Controls.Add(this.button_boat_head_navigation);
             this.groupBox5.Controls.Add(this.button_rudder_control);
@@ -2323,7 +2395,7 @@
             // button_trajectory_navigation
             // 
             this.button_trajectory_navigation.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_trajectory_navigation.Location = new System.Drawing.Point(255, 140);
+            this.button_trajectory_navigation.Location = new System.Drawing.Point(255, 180);
             this.button_trajectory_navigation.Name = "button_trajectory_navigation";
             this.button_trajectory_navigation.Size = new System.Drawing.Size(100, 23);
             this.button_trajectory_navigation.TabIndex = 94;
@@ -2334,7 +2406,7 @@
             // button_boat_head_navigation
             // 
             this.button_boat_head_navigation.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_boat_head_navigation.Location = new System.Drawing.Point(255, 111);
+            this.button_boat_head_navigation.Location = new System.Drawing.Point(255, 151);
             this.button_boat_head_navigation.Name = "button_boat_head_navigation";
             this.button_boat_head_navigation.Size = new System.Drawing.Size(100, 23);
             this.button_boat_head_navigation.TabIndex = 93;
@@ -2674,7 +2746,7 @@
             this.label54.AutoSize = true;
             this.label54.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label54.ForeColor = System.Drawing.Color.Red;
-            this.label54.Location = new System.Drawing.Point(223, 181);
+            this.label54.Location = new System.Drawing.Point(226, 214);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(69, 19);
             this.label54.TabIndex = 42;
@@ -3852,6 +3924,17 @@
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
             // 
+            // button_mix_both_control
+            // 
+            this.button_mix_both_control.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_mix_both_control.Location = new System.Drawing.Point(255, 111);
+            this.button_mix_both_control.Name = "button_mix_both_control";
+            this.button_mix_both_control.Size = new System.Drawing.Size(100, 23);
+            this.button_mix_both_control.TabIndex = 95;
+            this.button_mix_both_control.Text = "混合控制方向";
+            this.button_mix_both_control.UseVisualStyleBackColor = true;
+            this.button_mix_both_control.Click += new System.EventHandler(this.button_mix_both_control_Click);
+            // 
             // FrmGCSMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -4257,6 +4340,13 @@
         private System.Windows.Forms.Button button_set_switch_channel;
         private System.Windows.Forms.Button button_charge_turn_off;
         private System.Windows.Forms.Button button_rocket_close;
+        private System.Windows.Forms.TextBox textBox_feedbck_speed;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.TextBox textBox_beidou_lattitude;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.TextBox textBox_beidou_longitude;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.Button button_mix_both_control;
     }
 }
 
