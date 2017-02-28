@@ -262,6 +262,7 @@
             this.textBox_set_throttle = new System.Windows.Forms.TextBox();
             this.button_set_throttle = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button_launch_rocket_req = new System.Windows.Forms.Button();
             this.button_close_rocket_hatch = new System.Windows.Forms.Button();
             this.button_open_rocket_hatch = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
@@ -363,7 +364,6 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
-            this.button_launch_rocket_req = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -1441,7 +1441,7 @@
             this.button_rocket_close.Name = "button_rocket_close";
             this.button_rocket_close.Size = new System.Drawing.Size(83, 37);
             this.button_rocket_close.TabIndex = 66;
-            this.button_rocket_close.Text = "关闭火箭";
+            this.button_rocket_close.Text = "关闭3号小电机";
             this.button_rocket_close.UseVisualStyleBackColor = true;
             this.button_rocket_close.Click += new System.EventHandler(this.button_rocket_close_Click);
             // 
@@ -1452,7 +1452,7 @@
             this.button_lanuch_rocket.Name = "button_lanuch_rocket";
             this.button_lanuch_rocket.Size = new System.Drawing.Size(79, 37);
             this.button_lanuch_rocket.TabIndex = 65;
-            this.button_lanuch_rocket.Text = "发射火箭";
+            this.button_lanuch_rocket.Text = "开启3号小电机";
             this.button_lanuch_rocket.UseVisualStyleBackColor = true;
             this.button_lanuch_rocket.Click += new System.EventHandler(this.button_lanuch_rocket_Click);
             // 
@@ -2905,6 +2905,17 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "副控参数";
             // 
+            // button_launch_rocket_req
+            // 
+            this.button_launch_rocket_req.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_launch_rocket_req.Location = new System.Drawing.Point(24, 421);
+            this.button_launch_rocket_req.Name = "button_launch_rocket_req";
+            this.button_launch_rocket_req.Size = new System.Drawing.Size(90, 26);
+            this.button_launch_rocket_req.TabIndex = 15;
+            this.button_launch_rocket_req.Text = "请求发射火箭";
+            this.button_launch_rocket_req.UseVisualStyleBackColor = true;
+            this.button_launch_rocket_req.Click += new System.EventHandler(this.button_launch_rocket_req_Click);
+            // 
             // button_close_rocket_hatch
             // 
             this.button_close_rocket_hatch.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -3962,17 +3973,6 @@
             // main_timer
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
-            // 
-            // button_launch_rocket_req
-            // 
-            this.button_launch_rocket_req.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_launch_rocket_req.Location = new System.Drawing.Point(24, 421);
-            this.button_launch_rocket_req.Name = "button_launch_rocket_req";
-            this.button_launch_rocket_req.Size = new System.Drawing.Size(90, 26);
-            this.button_launch_rocket_req.TabIndex = 15;
-            this.button_launch_rocket_req.Text = "请求发射火箭";
-            this.button_launch_rocket_req.UseVisualStyleBackColor = true;
-            this.button_launch_rocket_req.Click += new System.EventHandler(this.button_launch_rocket_req_Click);
             // 
             // FrmGCSMain
             // 
