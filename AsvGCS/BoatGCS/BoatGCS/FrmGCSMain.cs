@@ -113,7 +113,9 @@ namespace BoatGCS
         public const byte PARAMETER_SET_CHARGE_TURN_ON = 1;
         public const byte PARAMETER_SET_CHARGE_TURN_OFF = 0;
 
-        
+        public const byte PARAMETER_SET_ROCKET_HATCH = 30;
+        public const byte PARAMETER_SET_CLOSE_ROCKET_HATCH = 0;
+        public const byte PARAMETER_SET_OPEN_ROCKET_HATCH = 1;
 
 
 
@@ -4097,6 +4099,28 @@ namespace BoatGCS
 
             gcs2ap_parameter.type = PARAMETER_SET_USE_DIFFERENTIAL_CONTROL;
             gcs2ap_parameter.value = MIX_BOTH_CONTROL;
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_open_rocket_hatch_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_ROCKET_HATCH;
+            gcs2ap_parameter.value = PARAMETER_SET_OPEN_ROCKET_HATCH;
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_close_rocket_hatch_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_ROCKET_HATCH;
+            gcs2ap_parameter.value = PARAMETER_SET_CLOSE_ROCKET_HATCH;
 
             gbl_var.send_req_cnt++;
         }

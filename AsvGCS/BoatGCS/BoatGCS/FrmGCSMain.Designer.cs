@@ -211,6 +211,7 @@
             this.btnSetHome = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button_mix_both_control = new System.Windows.Forms.Button();
             this.button_trajectory_navigation = new System.Windows.Forms.Button();
             this.button_boat_head_navigation = new System.Windows.Forms.Button();
             this.button_rudder_control = new System.Windows.Forms.Button();
@@ -360,7 +361,8 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
-            this.button_mix_both_control = new System.Windows.Forms.Button();
+            this.button_open_rocket_hatch = new System.Windows.Forms.Button();
+            this.button_close_rocket_hatch = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -2392,6 +2394,17 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "通用参数设置";
             // 
+            // button_mix_both_control
+            // 
+            this.button_mix_both_control.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_mix_both_control.Location = new System.Drawing.Point(255, 111);
+            this.button_mix_both_control.Name = "button_mix_both_control";
+            this.button_mix_both_control.Size = new System.Drawing.Size(100, 23);
+            this.button_mix_both_control.TabIndex = 95;
+            this.button_mix_both_control.Text = "混合控制方向";
+            this.button_mix_both_control.UseVisualStyleBackColor = true;
+            this.button_mix_both_control.Click += new System.EventHandler(this.button_mix_both_control_Click);
+            // 
             // button_trajectory_navigation
             // 
             this.button_trajectory_navigation.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -2880,6 +2893,8 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.Black;
+            this.tabPage5.Controls.Add(this.button_close_rocket_hatch);
+            this.tabPage5.Controls.Add(this.button_open_rocket_hatch);
             this.tabPage5.Controls.Add(this.groupBox8);
             this.tabPage5.Controls.Add(this.groupBox6);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
@@ -3924,16 +3939,27 @@
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
             // 
-            // button_mix_both_control
+            // button_open_rocket_hatch
             // 
-            this.button_mix_both_control.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_mix_both_control.Location = new System.Drawing.Point(255, 111);
-            this.button_mix_both_control.Name = "button_mix_both_control";
-            this.button_mix_both_control.Size = new System.Drawing.Size(100, 23);
-            this.button_mix_both_control.TabIndex = 95;
-            this.button_mix_both_control.Text = "混合控制方向";
-            this.button_mix_both_control.UseVisualStyleBackColor = true;
-            this.button_mix_both_control.Click += new System.EventHandler(this.button_mix_both_control_Click);
+            this.button_open_rocket_hatch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_open_rocket_hatch.Location = new System.Drawing.Point(24, 346);
+            this.button_open_rocket_hatch.Name = "button_open_rocket_hatch";
+            this.button_open_rocket_hatch.Size = new System.Drawing.Size(90, 23);
+            this.button_open_rocket_hatch.TabIndex = 8;
+            this.button_open_rocket_hatch.Text = "打开火箭舱盖";
+            this.button_open_rocket_hatch.UseVisualStyleBackColor = true;
+            this.button_open_rocket_hatch.Click += new System.EventHandler(this.button_open_rocket_hatch_Click);
+            // 
+            // button_close_rocket_hatch
+            // 
+            this.button_close_rocket_hatch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_close_rocket_hatch.Location = new System.Drawing.Point(24, 385);
+            this.button_close_rocket_hatch.Name = "button_close_rocket_hatch";
+            this.button_close_rocket_hatch.Size = new System.Drawing.Size(90, 23);
+            this.button_close_rocket_hatch.TabIndex = 9;
+            this.button_close_rocket_hatch.Text = "关闭火箭舱盖";
+            this.button_close_rocket_hatch.UseVisualStyleBackColor = true;
+            this.button_close_rocket_hatch.Click += new System.EventHandler(this.button_close_rocket_hatch_Click);
             // 
             // FrmGCSMain
             // 
@@ -4347,6 +4373,8 @@
         private System.Windows.Forms.TextBox textBox_beidou_longitude;
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.Button button_mix_both_control;
+        private System.Windows.Forms.Button button_close_rocket_hatch;
+        private System.Windows.Forms.Button button_open_rocket_hatch;
     }
 }
 
