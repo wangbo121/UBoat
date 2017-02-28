@@ -262,6 +262,8 @@
             this.textBox_set_throttle = new System.Windows.Forms.TextBox();
             this.button_set_throttle = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button_close_rocket_hatch = new System.Windows.Forms.Button();
+            this.button_open_rocket_hatch = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.button_charge_turn_off = new System.Windows.Forms.Button();
             this.button_charge_start_on = new System.Windows.Forms.Button();
@@ -361,8 +363,7 @@
             this.tSMenuItemSaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tSMenuItemOpenFile = new System.Windows.Forms.ToolStripMenuItem();
             this.main_timer = new System.Windows.Forms.Timer(this.components);
-            this.button_open_rocket_hatch = new System.Windows.Forms.Button();
-            this.button_close_rocket_hatch = new System.Windows.Forms.Button();
+            this.button_launch_rocket_req = new System.Windows.Forms.Button();
             this.menuStripMain.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -2893,6 +2894,7 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.Black;
+            this.tabPage5.Controls.Add(this.button_launch_rocket_req);
             this.tabPage5.Controls.Add(this.button_close_rocket_hatch);
             this.tabPage5.Controls.Add(this.button_open_rocket_hatch);
             this.tabPage5.Controls.Add(this.groupBox8);
@@ -2902,6 +2904,28 @@
             this.tabPage5.Size = new System.Drawing.Size(434, 631);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "副控参数";
+            // 
+            // button_close_rocket_hatch
+            // 
+            this.button_close_rocket_hatch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_close_rocket_hatch.Location = new System.Drawing.Point(24, 385);
+            this.button_close_rocket_hatch.Name = "button_close_rocket_hatch";
+            this.button_close_rocket_hatch.Size = new System.Drawing.Size(90, 23);
+            this.button_close_rocket_hatch.TabIndex = 9;
+            this.button_close_rocket_hatch.Text = "关闭火箭舱盖";
+            this.button_close_rocket_hatch.UseVisualStyleBackColor = true;
+            this.button_close_rocket_hatch.Click += new System.EventHandler(this.button_close_rocket_hatch_Click);
+            // 
+            // button_open_rocket_hatch
+            // 
+            this.button_open_rocket_hatch.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_open_rocket_hatch.Location = new System.Drawing.Point(24, 346);
+            this.button_open_rocket_hatch.Name = "button_open_rocket_hatch";
+            this.button_open_rocket_hatch.Size = new System.Drawing.Size(90, 23);
+            this.button_open_rocket_hatch.TabIndex = 8;
+            this.button_open_rocket_hatch.Text = "打开火箭舱盖";
+            this.button_open_rocket_hatch.UseVisualStyleBackColor = true;
+            this.button_open_rocket_hatch.Click += new System.EventHandler(this.button_open_rocket_hatch_Click);
             // 
             // groupBox8
             // 
@@ -3939,27 +3963,16 @@
             // 
             this.main_timer.Tick += new System.EventHandler(this.main_timer_Tick);
             // 
-            // button_open_rocket_hatch
+            // button_launch_rocket_req
             // 
-            this.button_open_rocket_hatch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_open_rocket_hatch.Location = new System.Drawing.Point(24, 346);
-            this.button_open_rocket_hatch.Name = "button_open_rocket_hatch";
-            this.button_open_rocket_hatch.Size = new System.Drawing.Size(90, 23);
-            this.button_open_rocket_hatch.TabIndex = 8;
-            this.button_open_rocket_hatch.Text = "打开火箭舱盖";
-            this.button_open_rocket_hatch.UseVisualStyleBackColor = true;
-            this.button_open_rocket_hatch.Click += new System.EventHandler(this.button_open_rocket_hatch_Click);
-            // 
-            // button_close_rocket_hatch
-            // 
-            this.button_close_rocket_hatch.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button_close_rocket_hatch.Location = new System.Drawing.Point(24, 385);
-            this.button_close_rocket_hatch.Name = "button_close_rocket_hatch";
-            this.button_close_rocket_hatch.Size = new System.Drawing.Size(90, 23);
-            this.button_close_rocket_hatch.TabIndex = 9;
-            this.button_close_rocket_hatch.Text = "关闭火箭舱盖";
-            this.button_close_rocket_hatch.UseVisualStyleBackColor = true;
-            this.button_close_rocket_hatch.Click += new System.EventHandler(this.button_close_rocket_hatch_Click);
+            this.button_launch_rocket_req.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button_launch_rocket_req.Location = new System.Drawing.Point(24, 421);
+            this.button_launch_rocket_req.Name = "button_launch_rocket_req";
+            this.button_launch_rocket_req.Size = new System.Drawing.Size(90, 26);
+            this.button_launch_rocket_req.TabIndex = 15;
+            this.button_launch_rocket_req.Text = "请求发射火箭";
+            this.button_launch_rocket_req.UseVisualStyleBackColor = true;
+            this.button_launch_rocket_req.Click += new System.EventHandler(this.button_launch_rocket_req_Click);
             // 
             // FrmGCSMain
             // 
@@ -4375,6 +4388,7 @@
         private System.Windows.Forms.Button button_mix_both_control;
         private System.Windows.Forms.Button button_close_rocket_hatch;
         private System.Windows.Forms.Button button_open_rocket_hatch;
+        private System.Windows.Forms.Button button_launch_rocket_req;
     }
 }
 

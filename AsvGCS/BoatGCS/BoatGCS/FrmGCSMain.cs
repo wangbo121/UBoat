@@ -83,7 +83,7 @@ namespace BoatGCS
         public const byte PARAMETER_SET_MOTOR_LEFT_INCREASE = 14;//左电机增加百分之x
         public const byte PARAMETER_SET_MOTOR_RIGHT_INCREASE = 15;//右电机增加百分之x
 
-        public const byte PARAMETER_SET_ROCKET = 16;
+        public const byte PARAMETER_SET_ROCKET = 16;//这个现在作为第三个小电机的启动和关闭，不再是火箭发射和关闭
         public const byte PARAMETER_SET_ROCKET_CLOSE = 0;
         public const byte PARAMETER_SET_ROCKET_LAUNCH = 1;
 
@@ -116,7 +116,9 @@ namespace BoatGCS
         public const byte PARAMETER_SET_ROCKET_HATCH = 30;
         public const byte PARAMETER_SET_CLOSE_ROCKET_HATCH = 0;
         public const byte PARAMETER_SET_OPEN_ROCKET_HATCH = 1;
+        public const byte PARAMETER_SET_LAUNCH_ROCKET = 2;
 
+        //public const byte PARAMETER_SET_LAUNCH_ROCKET_REQUEST = 31;
 
 
         
@@ -2604,10 +2606,36 @@ namespace BoatGCS
                 _yaw = Convert.ToByte(((65535 - joystick.AxisA) >> 8) & 0xff);
                 _throttle = Convert.ToByte(((65535 - joystick.AxisE) >> 8) & 0xff);
                 */
+
+#if false
+                //这是旧遥控器的，可以正常使用的，没问题
                 _pitch = Convert.ToByte(((65535 - joystick.AxisE) >> 8) & 0xff);
                 _roll = Convert.ToByte(((65535 - joystick.AxisA) >> 8) & 0xff);
                 _yaw = Convert.ToByte(((65535 - joystick.AxisD) >> 8) & 0xff);
                 _throttle = Convert.ToByte(((65535 - joystick.AxisC) >> 8) & 0xff);
+#else
+                //这是新遥控器的，模式选择APD模式
+                //_pitch = Convert.ToByte(((65535 - joystick.AxisE) >> 8) & 0xff);
+                //_roll = Convert.ToByte(((65535 - joystick.AxisA) >> 8) & 0xff);
+                //_yaw = Convert.ToByte(((65535 - joystick.AxisC) >> 8) & 0xff);
+                //_throttle = Convert.ToByte(((65535 - joystick.AxisD) >> 8) & 0xff);
+
+                //这是新遥控器的，模式选择Reflex XTR模式
+                _pitch = Convert.ToByte(((65535 - joystick.AxisE) >> 8) & 0xff);
+                _roll = Convert.ToByte(((65535 - joystick.AxisA) >> 8) & 0xff);
+                // _yaw = Convert.ToByte(((65535 - joystick.AxisC) >> 8) & 0xff);
+                _yaw = Convert.ToByte(((65535 - joystick.AxisA) >> 8) & 0xff);
+                _throttle = Convert.ToByte(((65535 - joystick.AxisC) >> 8) & 0xff);//A是方向 D是升降
+
+
+                //这是新遥控器的，模式选择G3模式
+                //_pitch = Convert.ToByte(((65535 - joystick.AxisE) >> 8) & 0xff);
+                //_roll = Convert.ToByte(((65535 - joystick.AxisA) >> 8) & 0xff);
+                //// _yaw = Convert.ToByte(((65535 - joystick.AxisC) >> 8) & 0xff);
+                //_yaw = Convert.ToByte(((65535 - joystick.AxisC) >> 8) & 0xff);
+                //_throttle = Convert.ToByte(((65535 - joystick.AxisB) >> 8) & 0xff);//C是滚转 D是油门 B是VRB
+                
+#endif
             }
 
             //系统配置栏中操作杆位置显示
@@ -4121,6 +4149,17 @@ namespace BoatGCS
 
             gcs2ap_parameter.type = PARAMETER_SET_ROCKET_HATCH;
             gcs2ap_parameter.value = PARAMETER_SET_CLOSE_ROCKET_HATCH;
+
+            gbl_var.send_req_cnt++;
+        }
+
+        private void button_launch_rocket_req_Click(object sender, EventArgs e)
+        {
+            /*这个是所有的参数设置都要把这个置为true*/
+            gbl_var.send_parameter_set = true;
+
+            gcs2ap_parameter.type = PARAMETER_SET_ROCKET_HATCH;
+            gcs2ap_parameter.value = PARAMETER_SET_LAUNCH_ROCKET;
 
             gbl_var.send_req_cnt++;
         }
